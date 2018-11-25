@@ -1,6 +1,5 @@
 package com.laros.api.resource;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -10,17 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.laros.api.event.RecursoCreadoEvent;
 import com.laros.api.model.Persona;
 import com.laros.api.repository.PersonaRepository;
+import com.laros.api.service.PersonaService;
 
 @RestController
 @RequestMapping("/personas")
@@ -31,6 +33,10 @@ public class PersonaResource {
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
+	
+	@Autowired
+	private PersonaService personaService;
+	
 	
 	@GetMapping
 	public ResponseEntity<?> listar() {
@@ -54,5 +60,23 @@ public class PersonaResource {
 				? ResponseEntity.ok(persona) 
 				: ResponseEntity.notFound().build();
 	}
+	
+	@DeleteMapping("/{codigo}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void eliminar(@PathVariable Long codigo) {
+		personaRepository.delete(codigo);
+	}
 
+	@PutMapping("/{codigo}")
+	public ResponseEntity<Persona> actualizar(@PathVariable Long codigo, @Valid @RequestBody(required=true) Persona persona) {
+		
+		return ResponseEntity.ok(personaService.actualizar(codigo, persona));
+	}
+	
+	@PutMapping("/{codigo}/activo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void actualizar(@PathVariable Long codigo, @RequestBody Boolean activo) {
+		personaService.actualizarPropiedadActivo(codigo, activo);
+	}
+	
 }
