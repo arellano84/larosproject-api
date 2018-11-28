@@ -25,7 +25,7 @@ public class Lanzamiento {
 	private String descripcion;
 	
 	@Column(name="fecha_vencimiento")
-	private LocalDate fechaVencimento;
+	private LocalDate fechaVencimiento;
 	
 	@Column(name="fecha_pago")
 	private LocalDate fechaPago;
@@ -34,7 +34,7 @@ public class Lanzamiento {
 	
 	private String observacion;
 	
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private TipoLanzamiento tipo;
 	
 	@ManyToOne
@@ -61,12 +61,12 @@ public class Lanzamiento {
 		this.descripcion = descripcion;
 	}
 
-	public LocalDate getFechaVencimento() {
-		return fechaVencimento;
+	public LocalDate getFechaVencimiento() {
+		return fechaVencimiento;
 	}
 
-	public void setFechaVencimento(LocalDate fechaVencimento) {
-		this.fechaVencimento = fechaVencimento;
+	public void setFechaVencimiento(LocalDate fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
 	}
 
 	public LocalDate getFechaPago() {
