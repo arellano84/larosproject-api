@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -61,12 +62,12 @@ public class LarosExceptionHandler extends ResponseEntityExceptionHandler{
 	@ExceptionHandler({DataIntegrityViolationException.class})
 	public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest request) {
 		
-		String mensajeUsuario =  messageSource.getMessage("llave.no-encontrada", null, LocaleContextHolder.getLocale());
-		String mensajeDesarrollador =  ex.toString();
+		String mensajeUsuario =  messageSource.getMessage("recurso.operacion-no-permitida", null, LocaleContextHolder.getLocale());
+		String mensajeDesarrollador =  ExceptionUtils.getRootCauseMessage(ex);
 
 		List<Error> errores = Arrays.asList(new Error(mensajeUsuario, mensajeDesarrollador));
 		
-		return handleExceptionInternal(ex, errores, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+		return handleExceptionInternal(ex, errores, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 	
 	
