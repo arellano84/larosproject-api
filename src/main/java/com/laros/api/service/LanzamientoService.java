@@ -6,13 +6,20 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.laros.api.model.Lanzamiento;
+import com.laros.api.model.Persona;
 import com.laros.api.repository.LanzamientoRepository;
+import com.laros.api.repository.PersonaRepository;
+import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
 
 @Service
 public class LanzamientoService {
 
 	@Autowired
+	private PersonaRepository personaRepository;
+	
+	@Autowired
 	private LanzamientoRepository lanzamientoRepository;
+	
 	
 	public Lanzamiento actualizar(Long codigo, Lanzamiento lanzamiento) {
 		Lanzamiento lanzamientoGuardado = buscarLanzamientoGuardado(codigo);
@@ -32,5 +39,14 @@ public class LanzamientoService {
 		if(lanzamientoGuardado==null)
 			throw new EmptyResultDataAccessException(1);
 		return lanzamientoGuardado;
+	}
+
+	public Lanzamiento guardar(Lanzamiento lanzamiento) throws PersonaInexistenteOInactivaException {
+		Persona persona = personaRepository.findOne(lanzamiento.getPersona().getCodigo());
+		if (persona == null || persona.isInactivo()) {
+			throw new PersonaInexistenteOInactivaException();
+		}
+		
+		return lanzamientoRepository.save(lanzamiento);
 	}
 }
