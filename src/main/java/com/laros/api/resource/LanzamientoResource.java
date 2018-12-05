@@ -27,6 +27,7 @@ import com.laros.api.event.RecursoCreadoEvent;
 import com.laros.api.exceptionhandler.LarosExceptionHandler.Error;
 import com.laros.api.model.Lanzamiento;
 import com.laros.api.repository.LanzamientoRepository;
+import com.laros.api.repository.filter.LanzamientoFilter;
 import com.laros.api.service.LanzamientoService;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
 
@@ -47,8 +48,11 @@ public class LanzamientoResource {
 	private MessageSource messageSource;
 	
 	@GetMapping
-	public ResponseEntity<?> listar() {
-		List<Lanzamiento> lanzamientos = lanzamientoRepository.findAll();
+	public ResponseEntity<?> buscar(LanzamientoFilter lanzamientoFilter) {
+		
+//		List<Lanzamiento> lanzamientos = lanzamientoRepository.findAll();
+		List<Lanzamiento> lanzamientos = lanzamientoRepository.filtrar(lanzamientoFilter);
+		
 		return !lanzamientos.isEmpty() 
 				? ResponseEntity.ok(lanzamientos) 
 				: ResponseEntity.noContent().build();
