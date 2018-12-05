@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,14 +50,14 @@ public class LanzamientoResource {
 	private MessageSource messageSource;
 	
 	@GetMapping
-	public ResponseEntity<?> buscar(LanzamientoFilter lanzamientoFilter) {
+	public Page<Lanzamiento> buscar(LanzamientoFilter lanzamientoFilter, Pageable pageable) {
 		
 //		List<Lanzamiento> lanzamientos = lanzamientoRepository.findAll();
-		List<Lanzamiento> lanzamientos = lanzamientoRepository.filtrar(lanzamientoFilter);
+		return lanzamientoRepository.filtrar(lanzamientoFilter, pageable);
 		
-		return !lanzamientos.isEmpty() 
-				? ResponseEntity.ok(lanzamientos) 
-				: ResponseEntity.noContent().build();
+//		return !lanzamientos.isEmpty() 
+//				? ResponseEntity.ok(lanzamientos) 
+//				: ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping
@@ -83,8 +85,6 @@ public class LanzamientoResource {
 	public ResponseEntity<Lanzamiento> actualizar(@PathVariable Long codigo, @Valid @RequestBody(required=true) Lanzamiento lanzamiento) {
 		return ResponseEntity.ok(lanzamientoService.actualizar(codigo, lanzamiento));
 	}
-	
-	
 	
 	@ExceptionHandler({PersonaInexistenteOInactivaException.class})
 	public ResponseEntity<Object> handlePersonaInexistenteOInactivaException(PersonaInexistenteOInactivaException ex) {
