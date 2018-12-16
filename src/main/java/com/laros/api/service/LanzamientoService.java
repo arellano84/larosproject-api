@@ -27,12 +27,6 @@ public class LanzamientoService {
 		lanzamientoRepository.save(lanzamientoGuardado);
 		return lanzamientoGuardado;
 	}
-
-//	public void actualizarPropiedadActivo(Long codigo, Boolean activo) {
-//		Lanzamiento lanzamientoGuardado = buscarLanzamientoGuardado(codigo);
-//		lanzamientoGuardado.setActivo(activo);
-//		lanzamientoRepository.save(lanzamientoGuardado);
-//	}
 	
 	private Lanzamiento buscarLanzamientoGuardado(Long codigo) {
 		Lanzamiento lanzamientoGuardado = lanzamientoRepository.findOne(codigo);
