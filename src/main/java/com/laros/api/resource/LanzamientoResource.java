@@ -62,6 +62,10 @@ public class LanzamientoResource {
 	
 	@PostMapping
 	public ResponseEntity<Lanzamiento> crear(@Valid @RequestBody Lanzamiento lanzamiento, HttpServletResponse response) throws PersonaInexistenteOInactivaException {
+		
+		//Validar que no sea modificación.
+		lanzamiento.setCodigo(null);
+		
 		Lanzamiento lanzamientoGuardado = lanzamientoService.guardar(lanzamiento);
 		publisher.publishEvent(new RecursoCreadoEvent(this, response, lanzamientoGuardado.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(lanzamientoGuardado);
