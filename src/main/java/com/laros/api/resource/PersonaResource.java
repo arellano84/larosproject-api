@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,7 @@ public class PersonaResource {
 	
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> listar() {
 		List<Persona> personas = personaRepository.findAll();
 		return !personas.isEmpty() 
@@ -47,6 +49,7 @@ public class PersonaResource {
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Persona> crear(@Valid @RequestBody Persona persona, HttpServletResponse response) {
 		Persona personaSalvada = personaRepository.save(persona);
 		publisher.publishEvent(new RecursoCreadoEvent(this, response, personaSalvada.getCodigo()));
@@ -54,6 +57,7 @@ public class PersonaResource {
 	}
 	
 	@GetMapping("/{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> buscarPorCodigo(@PathVariable Long codigo) {
 		Persona persona = personaRepository.findOne(codigo);
 		return persona!=null 
@@ -63,11 +67,13 @@ public class PersonaResource {
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
 	public void eliminar(@PathVariable Long codigo) {
 		personaRepository.delete(codigo);
 	}
 
 	@PutMapping("/{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Persona> actualizar(@PathVariable Long codigo, @Valid @RequestBody(required=true) Persona persona) {
 		
 		return ResponseEntity.ok(personaService.actualizar(codigo, persona));
@@ -75,6 +81,7 @@ public class PersonaResource {
 	
 	@PutMapping("/{codigo}/activo")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
 	public void actualizar(@PathVariable Long codigo, @RequestBody Boolean activo) {
 		personaService.actualizarPropiedadActivo(codigo, activo);
 	}

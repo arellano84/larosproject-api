@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,6 +51,7 @@ public class LanzamientoResource {
 	private MessageSource messageSource;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 	public Page<Lanzamiento> buscar(LanzamientoFilter lanzamientoFilter, Pageable pageable) {
 		
 //		List<Lanzamiento> lanzamientos = lanzamientoRepository.findAll();
@@ -61,6 +63,7 @@ public class LanzamientoResource {
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Lanzamiento> crear(@Valid @RequestBody Lanzamiento lanzamiento, HttpServletResponse response) throws PersonaInexistenteOInactivaException {
 		
 		//Validar que no sea modificación.
@@ -72,6 +75,7 @@ public class LanzamientoResource {
 	}
 	
 	@GetMapping("/{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> buscarPorCodigo(@PathVariable Long codigo) {
 		Lanzamiento lanzamiento = lanzamientoRepository.findOne(codigo);
 		return lanzamiento!=null 
@@ -81,11 +85,13 @@ public class LanzamientoResource {
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
 	public void eliminar(@PathVariable Long codigo) {
 		lanzamientoRepository.delete(codigo);
 	}
 
 	@PutMapping("/{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Lanzamiento> actualizar(@PathVariable Long codigo, @Valid @RequestBody(required=true) Lanzamiento lanzamiento) {
 		return ResponseEntity.ok(lanzamientoService.actualizar(codigo, lanzamiento));
 	}
