@@ -31,6 +31,7 @@ import com.laros.api.exceptionhandler.LarosExceptionHandler.Error;
 import com.laros.api.model.Lanzamiento;
 import com.laros.api.repository.LanzamientoRepository;
 import com.laros.api.repository.filter.LanzamientoFilter;
+import com.laros.api.repository.projection.ResumenLanzamiento;
 import com.laros.api.service.LanzamientoService;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
 
@@ -61,6 +62,14 @@ public class LanzamientoResource {
 //				? ResponseEntity.ok(lanzamientos) 
 //				: ResponseEntity.noContent().build();
 	}
+	
+	
+	@GetMapping(params="resumo")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	public Page<ResumenLanzamiento> resumir(LanzamientoFilter lanzamientoFilter, Pageable pageable) {
+		return lanzamientoRepository.resumir(lanzamientoFilter, pageable);
+	}
+	
 	
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
