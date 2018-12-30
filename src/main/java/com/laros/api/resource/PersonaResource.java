@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.laros.api.event.RecursoCreadoEvent;
 import com.laros.api.model.Persona;
 import com.laros.api.repository.PersonaRepository;
+import com.laros.api.repository.filter.PersonaFilter;
 import com.laros.api.service.PersonaService;
 
 @RestController
@@ -41,8 +42,13 @@ public class PersonaResource {
 	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
-	public ResponseEntity<?> listar() {
-		List<Persona> personas = personaRepository.findAll();
+	public ResponseEntity<?> listar(PersonaFilter personaFilter) {
+		
+		//7.7. Desafio: Pesquisa de pessoa
+		List<Persona> personas = personaRepository.filtrar(personaFilter);
+		
+//		List<Persona> personas = personaRepository.findAll();
+		
 		return !personas.isEmpty() 
 				? ResponseEntity.ok(personas) 
 				: ResponseEntity.noContent().build();
