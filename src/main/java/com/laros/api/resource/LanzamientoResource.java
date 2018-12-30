@@ -101,8 +101,12 @@ public class LanzamientoResource {
 
 	@PutMapping("/{codigo}")
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
-	public ResponseEntity<Lanzamiento> actualizar(@PathVariable Long codigo, @Valid @RequestBody(required=true) Lanzamiento lanzamiento) {
-		return ResponseEntity.ok(lanzamientoService.actualizar(codigo, lanzamiento));
+	public ResponseEntity<Lanzamiento> actualizar(@PathVariable Long codigo, @Valid @RequestBody(required=true) Lanzamiento lanzamiento) throws PersonaInexistenteOInactivaException {
+		try {
+			return ResponseEntity.ok(lanzamientoService.actualizar(codigo, lanzamiento));
+		} catch (IllegalArgumentException e){
+			return ResponseEntity.notFound().build();
+		} 
 	}
 	
 	@ExceptionHandler({PersonaInexistenteOInactivaException.class})
