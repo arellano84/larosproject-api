@@ -29,7 +29,8 @@ public class AppUserDetailsService implements UserDetailsService{
 		Optional<Usuario> usuarioOpcional = usuarioRepository.findByEmail(email);
 		Usuario usuario = usuarioOpcional.orElseThrow(()->new UsernameNotFoundException("Usuario y/o Contraseña Incorrectos"));
 		
-		return new User(email, usuario.getSenha(), getPermisos(usuario));
+//		return new User(email, usuario.getSenha(), getPermisos(usuario));
+		return new UsuarioSistema(usuario, getPermisos(usuario));//7.5. Nome do usuário no token JWT
 	}
 
 	private Collection<? extends GrantedAuthority> getPermisos(Usuario usuario) {
