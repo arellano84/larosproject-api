@@ -41,11 +41,29 @@ public class PersonaRepositoryImpl implements PersonaRepositoryQuery{
 		criteria.where(predicates);
 		
 		TypedQuery<Persona> query = manager.createQuery(criteria);
-//		adicionarRestriccionesDePaginacion(query, pageable);
-//		Long total = totalRegistros(personaFilter);
 		
 		return query.getResultList();
-//		return new PageImpl<>(query.getResultList(), pageable, total);
+	}	
+	
+	//20200403.Paginando...
+	@Override
+	public Page<Persona> filtrarPaginando(PersonaFilter personaFilter, Pageable pageable) {
+		
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Persona> criteria = builder.createQuery(Persona.class);
+		
+		Root<Persona> root = criteria.from(Persona.class);
+		
+		//Crear las Restricciones
+		Predicate[] predicates = crearRestriciones(personaFilter, builder, root);
+		criteria.where(predicates);
+		
+		TypedQuery<Persona> query = manager.createQuery(criteria);
+
+		adicionarRestriccionesDePaginacion(query, pageable);
+		Long total = totalRegistros(personaFilter);
+		
+		return new PageImpl<>(query.getResultList(), pageable, total);
 	}	
 	
 	private Predicate[] crearRestriciones(PersonaFilter personaFilter, CriteriaBuilder builder,
@@ -73,25 +91,25 @@ public class PersonaRepositoryImpl implements PersonaRepositoryQuery{
 	}
 	
 
-//	private void adicionarRestriccionesDePaginacion(TypedQuery<?> query, Pageable pageable) {
-//		int paginaActual = pageable.getPageNumber();
-//		int totalRegistrosPorPagina = pageable.getPageSize();
-//		int primerRegistroDePagina = paginaActual * totalRegistrosPorPagina;
-//		query.setFirstResult(primerRegistroDePagina);
-//		query.setMaxResults(totalRegistrosPorPagina);
-//	}
-//	
-//	private Long totalRegistros(PersonaFilter personaFilter) {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
-//		Root<Persona> root = criteria.from(Persona.class);
-//		
-//		//Crear las Restricciones
-//		Predicate[] predicates = crearRestriciones(personaFilter, builder, root);
-//		criteria.where(predicates);
-//		
-//		criteria.select(builder.count(root));
-//		return manager.createQuery(criteria).getSingleResult();
-//	}
+	private void adicionarRestriccionesDePaginacion(TypedQuery<?> query, Pageable pageable) {
+		int paginaActual = pageable.getPageNumber();
+		int totalRegistrosPorPagina = pageable.getPageSize();
+		int primerRegistroDePagina = paginaActual * totalRegistrosPorPagina;
+		query.setFirstResult(primerRegistroDePagina);
+		query.setMaxResults(totalRegistrosPorPagina);
+	}
+	
+	private Long totalRegistros(PersonaFilter personaFilter) {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
+		Root<Persona> root = criteria.from(Persona.class);
+		
+		//Crear las Restricciones
+		Predicate[] predicates = crearRestriciones(personaFilter, builder, root);
+		criteria.where(predicates);
+		
+		criteria.select(builder.count(root));
+		return manager.createQuery(criteria).getSingleResult();
+	}
 
 }

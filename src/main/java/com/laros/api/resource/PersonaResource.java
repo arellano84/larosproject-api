@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,16 +41,21 @@ public class PersonaResource {
 	@Autowired
 	private PersonaService personaService;
 	
-	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	public Page<Persona> buscar(PersonaFilter personaFilter, Pageable pageable) {
+		
+		return personaRepository.filtrarPaginando(personaFilter, pageable);
+	}
+	
+	@GetMapping("/personas/listar") //20200403
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> listar(PersonaFilter personaFilter) {
 		
-		//7.7. Desafio: Pesquisa de pessoa
-		List<Persona> personas = personaRepository.filtrar(personaFilter);
-		
 //		List<Persona> personas = personaRepository.findAll();
 		
+		//7.7. Desafio: Pesquisa de pessoa
+		List<Persona> personas = personaRepository.filtrar(personaFilter);
 		return !personas.isEmpty() 
 				? ResponseEntity.ok(personas) 
 				: ResponseEntity.noContent().build();
