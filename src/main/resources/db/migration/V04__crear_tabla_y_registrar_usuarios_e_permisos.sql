@@ -19,7 +19,7 @@ CREATE TABLE usuario_permiso (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO usuario (codigo, nome, email, senha) values (1, 'Administrador', 'admin@algamoney.com', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.');
-INSERT INTO usuario (codigo, nome, email, senha) values (2, 'Maria Silva', 'maria@algamoney.com', '$2a$10$Zc3w6HyuPOPXamaMhh.PQOXvDnEsadztbfi6/RyZWJDzimE8WQjaq');
+INSERT INTO usuario (codigo, nome, email, senha) values (2, 'Luis Aros', 'luis@algamoney.com', '$2a$10$Zc3w6HyuPOPXamaMhh.PQOXvDnEsadztbfi6/RyZWJDzimE8WQjaq');
 
 INSERT INTO permiso (codigo, descipcion) values (1, 'ROLE_CADASTRAR_CATEGORIA');
 INSERT INTO permiso (codigo, descipcion) values (2, 'ROLE_PESQUISAR_CATEGORIA');

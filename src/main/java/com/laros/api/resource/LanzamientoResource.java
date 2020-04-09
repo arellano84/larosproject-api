@@ -36,7 +36,7 @@ import com.laros.api.service.LanzamientoService;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
 
 @RestController
-@RequestMapping("/lanzamientos")
+@RequestMapping(value = {"/lanzamientos", "/movimientos"}) // ("/lanzamientos")
 public class LanzamientoResource {
 
 	@Autowired

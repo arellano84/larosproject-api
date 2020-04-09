@@ -15,5 +15,5 @@ CREATE TABLE persona(
 	pais VARCHAR(50) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO persona (documento,nombre,apellido1,apellido2,activo,pais) values ('03181607V','Luis','Arellano','', true,'México');
-INSERT INTO persona (documento,nombre,apellido1,apellido2,activo,pais) values ('03181607V','Rayssa','Camargo','', true,'Brasil');
+INSERT INTO persona (documento,nombre,apellido1,apellido2,activo,pais) values ('00000000V','Luis','Arellano','', true,'México');
+INSERT INTO persona (documento,nombre,apellido1,apellido2,activo,pais) values ('X0000000V','Rayssa','Camargo','', true,'Brasil');
