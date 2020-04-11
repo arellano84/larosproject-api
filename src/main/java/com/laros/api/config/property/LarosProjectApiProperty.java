@@ -34,13 +34,13 @@ public class LarosProjectApiProperty {
 			this.enableHttps = enableHttps;
 		}
 		
+		// (Angular) 19.00.2 Refactorizando: Inyectando tiempo valido de tokens en propiedades
 		public Integer getAccessTokenValiditySeconds() {
 			return accessTokenValiditySeconds;
 		}
 		public void setAccessTokenValiditySeconds(Integer accessTokenValiditySeconds) {
 			this.accessTokenValiditySeconds = accessTokenValiditySeconds;
 		}
-
 		public Integer getRefreshTokenValiditySeconds() {
 			return refreshTokenValiditySeconds;
 		}
