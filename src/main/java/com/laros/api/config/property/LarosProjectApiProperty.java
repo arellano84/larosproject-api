@@ -24,12 +24,28 @@ public class LarosProjectApiProperty {
 	public static class Seguridad {
 		
 		private boolean enableHttps;
+		private Integer accessTokenValiditySeconds;
+		private Integer refreshTokenValiditySeconds;
 
 		public boolean isEnableHttps() {
 			return enableHttps;
 		}
 		public void setEnableHttps(boolean enableHttps) {
 			this.enableHttps = enableHttps;
+		}
+		
+		public Integer getAccessTokenValiditySeconds() {
+			return accessTokenValiditySeconds;
+		}
+		public void setAccessTokenValiditySeconds(Integer accessTokenValiditySeconds) {
+			this.accessTokenValiditySeconds = accessTokenValiditySeconds;
+		}
+
+		public Integer getRefreshTokenValiditySeconds() {
+			return refreshTokenValiditySeconds;
+		}
+		public void setRefreshTokenValiditySeconds(Integer refreshTokenValiditySeconds) {
+			this.refreshTokenValiditySeconds = refreshTokenValiditySeconds;
 		}
 	}
 	

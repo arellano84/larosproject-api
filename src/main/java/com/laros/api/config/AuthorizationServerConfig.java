@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import com.laros.api.config.token.CustomTokenEnhancer;
+import com.laros.api.config.property.LarosProjectApiProperty;
 
 @Profile("oauth-security")
 @Configuration
@@ -27,6 +28,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
+	@Autowired
+	private LarosProjectApiProperty larosProjectApiProperty;
 	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -35,15 +38,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			.secret("@ngul@r0")
 			.scopes("read","write")
 			.authorizedGrantTypes("password", "refresh_token")
-			.accessTokenValiditySeconds(1800)//30 mins
-			.refreshTokenValiditySeconds(3600*24)
+			.accessTokenValiditySeconds(larosProjectApiProperty.getSeguridad().getAccessTokenValiditySeconds()) // 30 mins 1800 // The accessToken is valid for X time:
+			.refreshTokenValiditySeconds(larosProjectApiProperty.getSeguridad().getRefreshTokenValiditySeconds()) // The resource token is valid for 1 day (3600*24).
 		.and() 
 			.withClient("mobile")
 			.secret("m0b1l30")
 			.scopes("read")
 			.authorizedGrantTypes("password", "refresh_token")
-			.accessTokenValiditySeconds(1800)
-			.refreshTokenValiditySeconds(3600*24)
+			.accessTokenValiditySeconds(larosProjectApiProperty.getSeguridad().getAccessTokenValiditySeconds())
+			.refreshTokenValiditySeconds(larosProjectApiProperty.getSeguridad().getRefreshTokenValiditySeconds())
 			;
 	}
 	
