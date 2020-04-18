@@ -54,6 +54,19 @@ public class LanzamientoResource {
 	@Autowired
 	private MessageSource messageSource;
 	
+
+	/*
+	 * 22.5. Retornando os dados estatísticos de lançamento por dia
+	 * */
+	@GetMapping("/estadisticas/por-dia")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')") 
+	public List<MovimientoEstadisticaDia> porDia() {
+		
+		List<MovimientoEstadisticaDia> porDia = lanzamientoRepository.porDia(LocalDate.now());
+		
+		return porDia;
+	}
+	
 	/*
 	 * 22.3. Retornando os dados estatísticos de lançamento por categoria
 	 * */
