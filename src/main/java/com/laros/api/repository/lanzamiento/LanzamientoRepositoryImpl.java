@@ -1,5 +1,6 @@
 package com.laros.api.repository.lanzamiento;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
+import com.laros.api.dto.MovimientoEstadisticaCategoria;
 import com.laros.api.model.Categoria_;
 import com.laros.api.model.Lanzamiento;
 import com.laros.api.model.Lanzamiento_;
@@ -27,6 +29,46 @@ public class LanzamientoRepositoryImpl implements LanzamientoRepositoryQuery{
 
 	@PersistenceContext
 	private EntityManager manager;  
+	
+
+	/*
+	 * 22.2. Criando consulta para dados por categoria
+	 * */
+	@Override
+	public List<MovimientoEstadisticaCategoria> porCategoria(LocalDate mesReferencia) {
+		
+		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+		CriteriaQuery<MovimientoEstadisticaCategoria> criteriaQuery = criteriaBuilder.createQuery(MovimientoEstadisticaCategoria.class);
+		
+		//Buscamos los datos en Lanzamiento.
+		Root<Lanzamiento> root = criteriaQuery.from(Lanzamiento.class);
+		
+		//Construimos objeto
+		criteriaQuery.select(
+				criteriaBuilder.construct(MovimientoEstadisticaCategoria.class,
+						root.get(Lanzamiento_.categoria).get(Categoria_.nombre), 
+						criteriaBuilder.sum(root.get(Lanzamiento_.valor)))
+				);
+		
+		//Obtenemos primer y ultimo día del mes
+		LocalDate primerDia = mesReferencia.withDayOfMonth(1);
+		LocalDate ultimoDia = mesReferencia.withDayOfMonth(mesReferencia.lengthOfMonth());
+		
+		//Fecha mayor o igual a ultimo y primer día.
+		criteriaQuery.where(
+					criteriaBuilder.greaterThanOrEqualTo(root.get(Lanzamiento_.fechaVencimiento), primerDia),
+					criteriaBuilder.lessThanOrEqualTo(root.get(Lanzamiento_.fechaVencimiento), ultimoDia)
+				);
+		
+		//Agrupamos por categoria
+		criteriaQuery.groupBy(root.get(Lanzamiento_.categoria));
+		
+		//Genera query 
+		TypedQuery<MovimientoEstadisticaCategoria> typeQuery = manager.createQuery(criteriaQuery);
+		
+		//Devolvemos resultado
+		return typeQuery.getResultList();
+	}
 	
 	@Override
 	public Page<Lanzamiento> filtrar(LanzamientoFilter lanzamientoFilter, Pageable pageable) {
