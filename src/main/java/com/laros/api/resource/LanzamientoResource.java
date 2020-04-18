@@ -1,5 +1,6 @@
 package com.laros.api.resource;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.laros.api.dto.MovimientoEstadisticaCategoria;
 import com.laros.api.event.RecursoCreadoEvent;
 import com.laros.api.exceptionhandler.LarosExceptionHandler.Error;
 import com.laros.api.model.Lanzamiento;
@@ -51,8 +53,21 @@ public class LanzamientoResource {
 	@Autowired
 	private MessageSource messageSource;
 	
+	
+	/*
+	 * 22.3. Retornando os dados estatísticos de lançamento por categoria
+	 * */
+	@GetMapping("/estadisticas/por-categoria")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')") 
+	public List<MovimientoEstadisticaCategoria> porCategoria() {
+		
+		List<MovimientoEstadisticaCategoria> porCategoria = lanzamientoRepository.porCategoria(LocalDate.now());
+		
+		return porCategoria;
+	}
+	
 	@GetMapping
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')") //TODO: Revisar rol, es lanzamiento.
 	public Page<Lanzamiento> buscar(LanzamientoFilter lanzamientoFilter, Pageable pageable) {
 		
 //		List<Lanzamiento> lanzamientos = lanzamientoRepository.findAll();

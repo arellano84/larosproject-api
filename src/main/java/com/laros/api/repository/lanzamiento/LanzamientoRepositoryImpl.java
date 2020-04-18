@@ -46,7 +46,7 @@ public class LanzamientoRepositoryImpl implements LanzamientoRepositoryQuery{
 		//Construimos objeto
 		criteriaQuery.select(
 				criteriaBuilder.construct(MovimientoEstadisticaCategoria.class,
-						root.get(Lanzamiento_.categoria).get(Categoria_.nombre), 
+						root.get(Lanzamiento_.categoria), 
 						criteriaBuilder.sum(root.get(Lanzamiento_.valor)))
 				);
 		
@@ -64,10 +64,10 @@ public class LanzamientoRepositoryImpl implements LanzamientoRepositoryQuery{
 		criteriaQuery.groupBy(root.get(Lanzamiento_.categoria));
 		
 		//Genera query 
-		TypedQuery<MovimientoEstadisticaCategoria> typeQuery = manager.createQuery(criteriaQuery);
+		TypedQuery<MovimientoEstadisticaCategoria> typedQuery = manager.createQuery(criteriaQuery);
 		
 		//Devolvemos resultado
-		return typeQuery.getResultList();
+		return typedQuery.getResultList();
 	}
 	
 	@Override
