@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.laros.api.dto.MovimientoEstadisticaCategoria;
+import com.laros.api.dto.MovimientoEstadisticaDia;
 import com.laros.api.event.RecursoCreadoEvent;
 import com.laros.api.exceptionhandler.LarosExceptionHandler.Error;
 import com.laros.api.model.Lanzamiento;
@@ -52,7 +53,6 @@ public class LanzamientoResource {
 	
 	@Autowired
 	private MessageSource messageSource;
-	
 	
 	/*
 	 * 22.3. Retornando os dados estatísticos de lançamento por categoria

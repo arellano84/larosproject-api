@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 import com.laros.api.dto.MovimientoEstadisticaCategoria;
+import com.laros.api.dto.MovimientoEstadisticaDia;
 import com.laros.api.model.Categoria_;
 import com.laros.api.model.Lanzamiento;
 import com.laros.api.model.Lanzamiento_;
@@ -31,6 +32,46 @@ public class LanzamientoRepositoryImpl implements LanzamientoRepositoryQuery{
 	private EntityManager manager;  
 	
 
+	/*
+	 * 22.4. Criando consulta para dados por dia
+	 * */
+	@Override
+	public List<MovimientoEstadisticaDia> porDia(LocalDate mesReferencia) {
+		
+		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+		CriteriaQuery<MovimientoEstadisticaDia> criteriaQuery = criteriaBuilder.createQuery(MovimientoEstadisticaDia.class);
+		
+		//Buscamos los datos en Lanzamiento.
+		Root<Lanzamiento> root = criteriaQuery.from(Lanzamiento.class);
+		
+		//Construimos objeto
+		criteriaQuery.select(
+				criteriaBuilder.construct(MovimientoEstadisticaDia.class,
+						root.get(Lanzamiento_.tipo),
+						root.get(Lanzamiento_.fechaVencimiento),
+						criteriaBuilder.sum(root.get(Lanzamiento_.valor)))
+				);
+		
+		//Obtenemos primer y ultimo día del mes
+		LocalDate primerDia = mesReferencia.withDayOfMonth(1);
+		LocalDate ultimoDia = mesReferencia.withDayOfMonth(mesReferencia.lengthOfMonth());
+		
+		//Fecha mayor o igual a ultimo y primer día.
+		criteriaQuery.where(
+					criteriaBuilder.greaterThanOrEqualTo(root.get(Lanzamiento_.fechaVencimiento), primerDia),
+					criteriaBuilder.lessThanOrEqualTo(root.get(Lanzamiento_.fechaVencimiento), ultimoDia)
+				);
+		
+		//Agrupamos por tipo y fecha vencimiento
+		criteriaQuery.groupBy(root.get(Lanzamiento_.tipo), root.get(Lanzamiento_.fechaVencimiento));
+		
+		//Genera query 
+		TypedQuery<MovimientoEstadisticaDia> typedQuery = manager.createQuery(criteriaQuery);
+		
+		//Devolvemos resultado
+		return typedQuery.getResultList();
+	}
+	
 	/*
 	 * 22.2. Criando consulta para dados por categoria
 	 * */
