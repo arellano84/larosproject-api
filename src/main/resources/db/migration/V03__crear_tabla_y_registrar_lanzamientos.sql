@@ -12,18 +12,11 @@ CREATE TABLE lanzamiento (
 	FOREIGN KEY (codigo_persona) REFERENCES persona(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Salário mensual', '2017-06-10', null, 6500.00, 'Distribución de beneficios', 'INGRESO', 1, 1);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Bahamas', '2017-02-10', '2017-02-10', 100.32, null, 'GASTO', 2, 2);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Top Club', '2017-06-10', null, 120, null, 'INGRESO', 3, 1);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('CEMIG', '2017-02-10', '2017-02-10', 110.44, 'Generación', 'INGRESO', 3, 2);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('DMAE', '2017-06-10', null, 200.30, null, 'GASTO', 3, 1);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Extra', '2017-03-10', '2017-03-10', 1010.32, null, 'INGRESO', 2, 2);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Bahamas', '2017-06-10', null, 500, null, 'INGRESO', 1, 1);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Top Club', '2017-03-10', '2017-03-10', 400.32, null, 'GASTO', 4, 2);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Despachante', '2017-06-10', null, 123.64, 'Multas', 'GASTO', 3, 1);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Neumaticos', '2017-04-10', '2017-04-10', 665.33, null, 'INGRESO', 3, 1);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Café', '2017-06-10', null, 8.32, null, 'GASTO', 1, 1);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Eletrónicos', '2017-04-10', '2017-04-10', 2100.32, null, 'GASTO', 1, 2);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Instrumentos', '2017-06-10', null, 1040.32, null, 'GASTO', 4, 1);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Desayuno', '2017-04-10', '2017-04-10', 4.32, null, 'GASTO', 4, 2);
-INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Comida', '2017-06-10', null, 10.20, null, 'GASTO', 4, 1);
+INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Nómina mensual', '2020-04-01', '2020-04-01', 2000.00, 'Distribución de beneficios', 'INGRESO', 1, 1);
+INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Vuelo BR', '2020-04-01', '2020-04-06', 740.00, null, 'GASTO', 2, 1);
+INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Vuelo2 BR', '2020-04-01', '2020-04-06', 740.00, null, 'GASTO', 2, 1);
+INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Alquiler', '2020-04-01', '2020-04-02', 740.00, null, 'GASTO', 2, 1);
+INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Gastos', '2020-04-01', null, 0.00, null, 'GASTO', 2, 1);
+INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Comida', '2020-04-01', '2020-04-18', 740.00, 'Gastos desde 1 de abril', 'GASTO', 2, 1);
+INSERT INTO lanzamiento (descripcion, fecha_vencimiento, fecha_pago, valor, observacion, tipo, codigo_categoria, codigo_persona) values ('Devolución Renta 2019', '2020-04-05', '2020-04-15', 415.38, 'Declaración 2019 España', 'INGRESO', 1, 1);
+
