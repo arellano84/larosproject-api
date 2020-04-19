@@ -27,8 +27,8 @@ public class Mailer {
 	 * */
 	@EventListener
 	public void test(ApplicationReadyEvent event) {
-		enviarEmail("testes.algaworks@gmail.com", 
-				Arrays.asList("ing.arellano@gmail.com"), 
+		enviarEmail("", //TODO: agregar email
+				Arrays.asList(""), //TODO: agregar email
 				"[larosproject] Probando envio",
 				"<br>Hola, ¿cómo estas?</br>");
 		
