@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.laros.api.dto.MovimientoEstadisticaPersona;
@@ -33,6 +34,22 @@ public class LanzamientoService {
 	@Autowired
 	private LanzamientoRepository lanzamientoRepository;
 
+	
+	/*
+	 * 22.15. Criando um agendamento de tarefa (Scheduler)
+	 * */
+	@Scheduled(fixedDelay = 1000 * 60 * 60) //cada hora
+	public void notificarSobreMovimientosVencidos() {
+		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidos]---------->Método siendo ejecutado...");
+	}
+	
+	/*
+	 * 22.15. Criando um agendamento de tarefa (Scheduler) -> chon
+	 * */
+	@Scheduled(cron = "0 05 13 * * *") // Todos los dias a las 13:05, * indica siempre OjO.
+	public void notificarSobreMovimientosVencidosPlanificado() {
+		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidosPlanificado]---------->Método siendo ejecutado...");
+	}
 	
 	/*
 	 * 22.13. Gerando os bytes do relatório
