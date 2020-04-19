@@ -116,7 +116,15 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 		
-		
+		<!-- 22.19. Processando o template e enviando o e-mail -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.thymeleaf.extras</groupId>
+		    <artifactId>thymeleaf-extras-java8time</artifactId>
+		</dependency>
 		
 		<!-- JasperReports 
 		22.13. Gerando os bytes do relatório -->

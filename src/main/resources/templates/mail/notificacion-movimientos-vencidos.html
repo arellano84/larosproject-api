@@ -6,7 +6,7 @@
 
 <body style="font-family: Arial; font-size: 14px;">
 
-<p>Olá!</p>
+<p>Buenos días!</p>
 
 <p>Existen gastos o ingresos vencidos o a vencer:</p>
 
@@ -24,7 +24,8 @@
         
         <tbody>
             <tr style="border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;"
-                th:each="movimiento: ${movimientos}">
+                th:each="movimiento: ${movimientos}"
+                th:styleappend="${movimiento.ingreso} ? 'color: blue;' : 'color: red;'">
                 <td th:text="${movimiento.tipo.descripcion}">...</td>
                 <td th:text="${movimiento.persona.nombre}">...</td>
                 <td th:text="${movimiento.descripcion}">...</td>
