@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 
 import com.laros.api.dto.MovimientoEstadisticaCategoria;
 import com.laros.api.dto.MovimientoEstadisticaDia;
+import com.laros.api.dto.MovimientoEstadisticaPersona;
 import com.laros.api.model.Categoria_;
 import com.laros.api.model.Lanzamiento;
 import com.laros.api.model.Lanzamiento_;
@@ -32,6 +33,42 @@ public class LanzamientoRepositoryImpl implements LanzamientoRepositoryQuery{
 	private EntityManager manager;  
 	
 
+	/*
+	 * 22.12. Criando a consulta do relatório
+	 * */
+	@Override
+	public List<MovimientoEstadisticaPersona> porPersona(LocalDate inicio, LocalDate fin) {
+		
+		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+		CriteriaQuery<MovimientoEstadisticaPersona> criteriaQuery = criteriaBuilder.createQuery(MovimientoEstadisticaPersona.class);
+		
+		//Buscamos los datos en Lanzamiento.
+		Root<Lanzamiento> root = criteriaQuery.from(Lanzamiento.class);
+		
+		//Construimos objeto
+		criteriaQuery.select(
+				criteriaBuilder.construct(MovimientoEstadisticaPersona.class,
+						root.get(Lanzamiento_.tipo),
+						root.get(Lanzamiento_.persona),
+						criteriaBuilder.sum(root.get(Lanzamiento_.valor)))
+				);
+		
+		//consulta por rango de fechas.
+		criteriaQuery.where(
+					criteriaBuilder.greaterThanOrEqualTo(root.get(Lanzamiento_.fechaVencimiento), inicio),
+					criteriaBuilder.lessThanOrEqualTo(root.get(Lanzamiento_.fechaVencimiento), fin)
+				);
+		
+		//Agrupamos por tipo y fecha vencimiento
+		criteriaQuery.groupBy(root.get(Lanzamiento_.tipo), root.get(Lanzamiento_.fechaVencimiento));
+		
+		//Genera query 
+		TypedQuery<MovimientoEstadisticaPersona> typedQuery = manager.createQuery(criteriaQuery);
+		
+		//Devolvemos resultado
+		return typedQuery.getResultList();
+	}
+	
 	/*
 	 * 22.4. Criando consulta para dados por dia
 	 * */
