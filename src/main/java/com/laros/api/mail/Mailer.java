@@ -123,7 +123,7 @@ public class Mailer {
 		
 		emails = Arrays.asList("...@gmail.com"); // TODO: email: agregar email de prueba
 		
-		this.enviarEmail("larosproject20@gmail.com", 
+		this.enviarEmail("...@gmail.com", // TODO: email: agregar email de prueba
 				emails, 
 				"Movimientos vencidos", 
 				"mail/notificacion-movimientos-vencidos", 
