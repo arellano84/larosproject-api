@@ -10,24 +10,24 @@ import com.laros.api.model.TipoLanzamiento;
  * */
 public class MovimientoEstadisticaPersona {
 	
-	private TipoLanzamiento tipoLanzamiento;
+	private TipoLanzamiento tipo;
 	
 	private Persona persona;
 	
 	private BigDecimal total;
 
-	public MovimientoEstadisticaPersona(TipoLanzamiento tipoLanzamiento, Persona persona, BigDecimal total) {
-		this.tipoLanzamiento = tipoLanzamiento;
+	public MovimientoEstadisticaPersona(TipoLanzamiento tipo, Persona persona, BigDecimal total) {
+		this.tipo = tipo;
 		this.persona = persona;
 		this.total = total;
 	}
 
-	public TipoLanzamiento getTipoLanzamiento() {
-		return tipoLanzamiento;
+	public TipoLanzamiento getTipo() {
+		return tipo;
 	}
 
-	public void setTipoLanzamiento(TipoLanzamiento tipoLanzamiento) {
-		this.tipoLanzamiento = tipoLanzamiento;
+	public void setTipo(TipoLanzamiento tipo) {
+		this.tipo = tipo;
 	}
 
 	public Persona getPersona() {
