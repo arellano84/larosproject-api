@@ -1,14 +1,28 @@
 package com.laros.api.service;
 
+import java.io.InputStream;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.laros.api.dto.MovimientoEstadisticaPersona;
 import com.laros.api.model.Lanzamiento;
 import com.laros.api.model.Persona;
 import com.laros.api.repository.LanzamientoRepository;
 import com.laros.api.repository.PersonaRepository;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
+
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
 public class LanzamientoService {
@@ -19,7 +33,31 @@ public class LanzamientoService {
 	@Autowired
 	private LanzamientoRepository lanzamientoRepository;
 
+	
+	/*
+	 * 22.13. Gerando os bytes do relatório
+	 * */
+	public byte[] informePorPersona(LocalDate inicio, LocalDate fin) throws Exception {
+		//Consulta de datos
+		List<MovimientoEstadisticaPersona> datos = lanzamientoRepository.porPersona(inicio, fin);
+		
+		//Agregamos parámetros.
+		Map<String, Object> parametros = new HashMap();
+		parametros.put("DT_INICIO", Date.valueOf(inicio));
+		parametros.put("DT_FIN", Date.valueOf(fin));
+		parametros.put("REPORT_LOCALE", new Locale("es", "ES")); //Formato local
+		
+		//Seleccionando informe a generar
+		InputStream inputStream = this.getClass().getResourceAsStream("/informes/movimientos-por-persona.jasper");
 
+		//Generar informe
+		JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, new JRBeanCollectionDataSource(datos));
+
+		//Generar pdf
+		return JasperExportManager.exportReportToPdf(jasperPrint);
+		
+	}
+	
 	public Lanzamiento guardar(Lanzamiento lanzamiento) throws PersonaInexistenteOInactivaException {
 		validarPersona(lanzamiento);
 		
