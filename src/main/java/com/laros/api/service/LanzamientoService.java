@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -31,6 +33,9 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @Service
 public class LanzamientoService {
 
+	//22.22. Incluindo logs no agendamento do envio de e-mail
+	private static final Logger logger = LoggerFactory.getLogger(LanzamientoService.class);	
+	
 	private static final String ROLE_DESTINATARIOS = "ROLE_PESQUISAR_LANCAMENTO";
 	
 	@Autowired
@@ -50,8 +55,11 @@ public class LanzamientoService {
 	 * */
 	// @Scheduled(fixedDelay = 1000 * 60 * 60) //cada hora //TODO: email: activar envio
 	public void notificarSobreMovimientosVencidos() {
-		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidos]---------->Ejecutado...");
-				
+		
+		if(logger.isDebugEnabled()) {
+			logger.debug("[notificarSobreMovimientosVencidos] INICIO...");
+		}
+		
 		//22.21. Agendando o envio de e-mail
 		
 		//Consultado Movimientos Vencidos
@@ -59,10 +67,23 @@ public class LanzamientoService {
 		//Consultado Destinatarios
 		List<Usuario> destinatarios = usuarioRepository.findByPermisosDescipcion(ROLE_DESTINATARIOS);
 		
+		
+		if(lanzVencidos.isEmpty()) {
+			logger.debug("[notificarSobreMovimientosVencidos] Sin lanzamientos vencidos.");
+			return ;
+		}
+		
+		logger.debug("[notificarSobreMovimientosVencidos] Existen {} lanzamientos vencidos.", lanzVencidos.size());
+		
+		if(destinatarios.isEmpty()) {
+			logger.warn("[notificarSobreMovimientosVencidos] Sin destinatarios.");
+			return ;
+		}
+		
 		//Envia email con template.
 		mailer.avisarSobreLanzamentosVencidos(lanzVencidos, destinatarios);
-		
-		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidos]----------> Ejecutado.");
+				
+		logger.info("[notificarSobreMovimientosVencidos] FIN.");
 	}
 	
 	/*

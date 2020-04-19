@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -29,14 +31,14 @@ import com.laros.api.repository.LanzamientoRepository;
 @Component
 public class Mailer {
 
+	private static final Logger logger = LoggerFactory.getLogger(Mailer.class);
+	
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
 	// 22.19. Processando o template e enviando o e-mail
 	@Autowired
 	private TemplateEngine thymeleaf;
-	
-	
 	
 	/*
 	 * Escuchador para enviar.
@@ -113,6 +115,9 @@ public class Mailer {
 	 * 22.21. Agendando o envio de e-mail
 	 * */
 	public void avisarSobreLanzamentosVencidos(List<Lanzamiento> lanzVencidos, List<Usuario> destinatarios) {
+		if(logger.isDebugEnabled()) {
+			logger.debug("[avisarSobreLanzamentosVencidos] INICIO...");
+		}
 		
 		Map<String, Object> variables = new HashMap<>();
 		variables.put("movimientos", lanzVencidos);
@@ -123,11 +128,15 @@ public class Mailer {
 		
 		emails = Arrays.asList("...@gmail.com"); // TODO: email: agregar email de prueba
 		
+		logger.debug("[avisarSobreLanzamentosVencidos] Enviando a:" + emails.toString());
+		
 		this.enviarEmail("...@gmail.com", // TODO: email: agregar email de prueba
 				emails, 
 				"Movimientos vencidos", 
 				"mail/notificacion-movimientos-vencidos", 
 				variables);
+		
+		logger.debug("[avisarSobreLanzamentosVencidos] FIN.");
 	}
 	
 }
