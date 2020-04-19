@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -19,6 +20,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import com.laros.api.model.Lanzamiento;
+import com.laros.api.model.Usuario;
 import com.laros.api.repository.LanzamientoRepository;
 
 /*
@@ -39,8 +41,11 @@ public class Mailer {
 	/*
 	 * Escuchador para enviar.
 	 * */
-	/*@Autowired
-	private LanzamientoRepository lanzamientosVencidos;
+	
+	/* //TODO: email: Test para probar email
+	
+	@Autowired
+	private LanzamientoRepository lanzamientosRepository;
 	
 	@EventListener
 	public void test(ApplicationReadyEvent event) {
@@ -54,13 +59,13 @@ public class Mailer {
 		
 		// Para que funcione en local activar: https://myaccount.google.com/lesssecureapps?pli=1
 		
-		String remitente = "...@gmail.com"; // TODO: para prueba agregar email
+		String remitente = "..@gmail.com"; // TODO: para prueba agregar email
 		List<String> destinatarios = Arrays.asList("...@gmail.com"); // TODO: para prueba agregar email
 		String asunto = "Movimientos Vencidos";
 		String template = "mail/notificacion-movimientos-vencidos";
 		
 		//Consulta Movimientos
-		List<Lanzamiento> lanzamientos = lanzamientosVencidos.findAll();
+		List<Lanzamiento> lanzamientos = lanzamientosRepository.findAll();
 		//Agrega Lista
 		Map<String, Object> variables = new HashMap<>();
 		variables.put("movimientos", lanzamientos);
@@ -102,4 +107,27 @@ public class Mailer {
 		
 		this.enviarEmail(remitente, destinatarios, asunto, mensaje);
 	}
+	
+	
+	/*
+	 * 22.21. Agendando o envio de e-mail
+	 * */
+	public void avisarSobreLanzamentosVencidos(List<Lanzamiento> lanzVencidos, List<Usuario> destinatarios) {
+		
+		Map<String, Object> variables = new HashMap<>();
+		variables.put("movimientos", lanzVencidos);
+		
+		List<String> emails = destinatarios.stream()
+				.map(u -> u.getEmail())
+				.collect(Collectors.toList());
+		
+		emails = Arrays.asList("...@gmail.com"); // TODO: email: agregar email de prueba
+		
+		this.enviarEmail("larosproject20@gmail.com", 
+				emails, 
+				"Movimientos vencidos", 
+				"mail/notificacion-movimientos-vencidos", 
+				variables);
+	}
+	
 }

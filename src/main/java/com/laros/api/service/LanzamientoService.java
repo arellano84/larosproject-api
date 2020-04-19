@@ -10,14 +10,17 @@ import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.laros.api.dto.MovimientoEstadisticaPersona;
+import com.laros.api.mail.Mailer;
 import com.laros.api.model.Lanzamiento;
 import com.laros.api.model.Persona;
+import com.laros.api.model.Usuario;
 import com.laros.api.repository.LanzamientoRepository;
 import com.laros.api.repository.PersonaRepository;
+import com.laros.api.repository.UsuarioRepository;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
 
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -28,19 +31,38 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @Service
 public class LanzamientoService {
 
+	private static final String ROLE_DESTINATARIOS = "ROLE_PESQUISAR_LANCAMENTO";
+	
 	@Autowired
 	private PersonaRepository personaRepository;
 	
 	@Autowired
 	private LanzamientoRepository lanzamientoRepository;
 
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private Mailer mailer;
 	
 	/*
 	 * 22.15. Criando um agendamento de tarefa (Scheduler)
 	 * */
-	// @Scheduled(fixedDelay = 1000 * 60 * 60) //cada hora //TODO: desactivado
+	// @Scheduled(fixedDelay = 1000 * 60 * 60) //cada hora //TODO: email: activar envio
 	public void notificarSobreMovimientosVencidos() {
-		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidos]---------->Método siendo ejecutado...");
+		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidos]---------->Ejecutado...");
+				
+		//22.21. Agendando o envio de e-mail
+		
+		//Consultado Movimientos Vencidos
+		List<Lanzamiento> lanzVencidos = lanzamientoRepository.findByFechaVencimientoLessThanEqualAndFechaPagoIsNull(LocalDate.now());
+		//Consultado Destinatarios
+		List<Usuario> destinatarios = usuarioRepository.findByPermisosDescipcion(ROLE_DESTINATARIOS);
+		
+		//Envia email con template.
+		mailer.avisarSobreLanzamentosVencidos(lanzVencidos, destinatarios);
+		
+		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidos]----------> Ejecutado.");
 	}
 	
 	/*
@@ -48,7 +70,7 @@ public class LanzamientoService {
 	 * */
 	//@Scheduled(cron = "0 05 13 * * *") // Todos los dias a las 13:05, * indica siempre OjO. //TODO: desactivado
 	public void notificarSobreMovimientosVencidosPlanificado() {
-		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidosPlanificado]---------->Método siendo ejecutado...");
+		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidosPlanificado]----------> Ejecutado...");
 	}
 	
 	/*
