@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
+//import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.laros.api.dto.MovimientoEstadisticaPersona;
@@ -38,7 +38,7 @@ public class LanzamientoService {
 	/*
 	 * 22.15. Criando um agendamento de tarefa (Scheduler)
 	 * */
-	@Scheduled(fixedDelay = 1000 * 60 * 60) //cada hora
+	// @Scheduled(fixedDelay = 1000 * 60 * 60) //cada hora //TODO: desactivado
 	public void notificarSobreMovimientosVencidos() {
 		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidos]---------->Método siendo ejecutado...");
 	}
@@ -46,7 +46,7 @@ public class LanzamientoService {
 	/*
 	 * 22.15. Criando um agendamento de tarefa (Scheduler) -> chon
 	 * */
-	@Scheduled(cron = "0 05 13 * * *") // Todos los dias a las 13:05, * indica siempre OjO.
+	//@Scheduled(cron = "0 05 13 * * *") // Todos los dias a las 13:05, * indica siempre OjO. //TODO: desactivado
 	public void notificarSobreMovimientosVencidosPlanificado() {
 		System.out.println("[LanzamientoService.notificarSobreMovimientosVencidosPlanificado]---------->Método siendo ejecutado...");
 	}
