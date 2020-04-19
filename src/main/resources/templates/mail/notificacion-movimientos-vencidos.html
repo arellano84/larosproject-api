@@ -1,0 +1,44 @@
+<!-- 22.18. Configurando o template para o envio do e-mail -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+
+<body style="font-family: Arial; font-size: 14px;">
+
+<p>Olá!</p>
+
+<p>Existen gastos o ingresos vencidos o a vencer:</p>
+
+<p>
+    <table style="width: 100%; border-collapse: collapse;  margin: 20px 0">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Persona</th>
+                <th>Descripción</th>
+                <th>Vencimiento</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr style="border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;"
+                th:each="movimiento: ${movimientos}">
+                <td th:text="${movimiento.tipo.descripcion}">...</td>
+                <td th:text="${movimiento.persona.nombre}">...</td>
+                <td th:text="${movimiento.descripcion}">...</td>
+                <td th:text="${#temporals.format(movimiento.fechaVencimiento, 'dd/MM/yyyy')}" 
+                    style="text-align: center">19/04/2020</td>
+                <td th:text="${#numbers.formatDecimal(movimiento.valor, 0, 'POINT', 2, 'COMMA')}" 
+                    style="text-align: right">€ 10.000,00</td>
+            </tr>
+        </tbody>
+    </table>
+</p>
+
+<p>Gracias.</p>
+<p>Equipo Laros!</p>
+
+</body>
+</html>
