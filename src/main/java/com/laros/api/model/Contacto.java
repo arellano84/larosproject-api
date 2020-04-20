@@ -12,7 +12,9 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-/*  TODO: Spring-Boot 2 - 22.23. Criando a entidade Contato para suportar mestre-detalhe
+/*
+ * 22.23. Criando a entidade Contato para suportar mestre-detalhe
+TODO: Spring-Boot 2:
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 */
@@ -35,7 +37,7 @@ public class Contacto {
 	@NotEmpty
 	private String telefono;
 	
-	@NotNull
+//	@NotNull
 	@ManyToOne
 	@JoinColumn(name="codigo_persona")
 	private Persona persona;

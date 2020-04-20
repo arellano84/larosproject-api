@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -32,6 +34,8 @@ import com.laros.api.service.PersonaService;
 @RequestMapping("/personas")
 public class PersonaResource {
 
+	private static final Logger logger = LoggerFactory.getLogger(PersonaResource.class);
+	
 	@Autowired
 	private PersonaRepository personaRepository;
 
@@ -64,7 +68,13 @@ public class PersonaResource {
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Persona> crear(@Valid @RequestBody Persona persona, HttpServletResponse response) {
-		Persona personaSalvada = personaRepository.save(persona);
+		
+		logger.debug("[crear] Inicio...");
+		
+		// 22.25. Inserindo uma pessoa com contato
+//		Persona personaSalvada = personaRepository.save(persona);
+		Persona personaSalvada = personaService.guardar(persona);
+		
 		publisher.publishEvent(new RecursoCreadoEvent(this, response, personaSalvada.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(personaSalvada);
 	}
