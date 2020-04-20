@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.laros.api.mail.Mailer;
 import com.laros.api.model.Persona;
 import com.laros.api.repository.PersonaRepository;
 
