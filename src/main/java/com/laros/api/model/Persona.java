@@ -1,12 +1,18 @@
 package com.laros.api.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -41,6 +47,10 @@ public class Persona {
 	
 	@Embedded
 	private Direccion direccion;
+	
+	@Valid
+	@OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Contacto> contactos;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -96,6 +106,14 @@ public class Persona {
 
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
+	}
+	
+	public List<Contacto> getContactos() {
+		return contactos;
+	}
+
+	public void setContactos(List<Contacto> contactos) {
+		this.contactos = contactos;
 	}
 
 	@JsonIgnore
