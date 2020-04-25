@@ -137,13 +137,29 @@ public class LanzamientoService {
 	}
 	
 	public Lanzamiento actualizar(Long codigo, Lanzamiento lanzamiento) throws PersonaInexistenteOInactivaException {
+		
+		logger.debug("[actualizar] INICIO...");
+		
 		Lanzamiento lanzamientoGuardado = buscarLanzamientoExistente(codigo);
 		if(!lanzamiento.getPersona().equals(lanzamientoGuardado.getPersona())) {
 			validarPersona(lanzamiento);
 		}
 		
+		// 22.35. Atualizando e removendo anexo
+		// TODO: REvisar no, esta funcionando correctamente modificación de anexo y eliminación.
+		if (StringUtils.isEmpty(lanzamiento.getAnexo())
+				&& StringUtils.hasText(lanzamientoGuardado.getAnexo())) {
+			s3.remover(lanzamientoGuardado.getAnexo());
+		} else if (StringUtils.hasLength(lanzamiento.getAnexo())
+				&& !lanzamiento.getAnexo().equals(lanzamientoGuardado.getAnexo())) {
+			s3.substituir(lanzamientoGuardado.getAnexo(), lanzamiento.getAnexo());
+		}
+		
+		
 		//Copiar propiedades de un objeto a otro, excepto el código.
 		BeanUtils.copyProperties(lanzamiento, lanzamientoGuardado, "codigo");
+		
+		logger.debug("[actualizar] FIN.");
 		
 		return lanzamientoRepository.save(lanzamientoGuardado);
 	}
