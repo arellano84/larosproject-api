@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.laros.api.dto.Anexo;
 import com.laros.api.dto.MovimientoEstadisticaCategoria;
 import com.laros.api.dto.MovimientoEstadisticaDia;
 import com.laros.api.event.RecursoCreadoEvent;
@@ -46,6 +47,7 @@ import com.laros.api.repository.filter.LanzamientoFilter;
 import com.laros.api.repository.projection.ResumenLanzamiento;
 import com.laros.api.service.LanzamientoService;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
+import com.laros.api.storage.S3;
 
 @RestController
 @RequestMapping(value = {"/lanzamientos", "/movimientos"}) // ("/lanzamientos")
@@ -65,21 +67,26 @@ public class LanzamientoResource {
 	@Autowired
 	private MessageSource messageSource;
 	
+	// 22.33. Enviando arquivos para o S3
+	@Autowired
+	private S3 s3;
 
 	// 22.28. Upload de arquivos para API
 	@PostMapping("/anexo")
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('read')") 
-	public String uploadAnexo(@RequestParam("nomanexo") MultipartFile anexo) throws IOException {
+	public Anexo uploadAnexo(@RequestParam("nomanexo") MultipartFile anexo) throws IOException {
 
 		logger.debug("[uploadAnexo] Inicio...");
-		
+		/*
 		FileOutputStream out = new FileOutputStream("G:\\temp\\anexo-" + anexo.getOriginalFilename());
 		out.write(anexo.getBytes());
-		out.close();
+		out.close();*/
+		
+		String nombre = s3.salvarTemporariamente(anexo);
 
 		logger.debug("[uploadAnexo] Fin.");
 		
-		return "ok";
+		return new Anexo(nombre, s3.configurarUrl(nombre));
 	}
 	
 	
