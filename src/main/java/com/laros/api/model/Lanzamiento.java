@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,9 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.laros.api.repository.listener.LanzamientoAnexoListener;
 
+@EntityListeners(LanzamientoAnexoListener.class) // 22.36. Configurando URL do anexo
 @Entity
 @Table(name="lanzamiento")
 public class Lanzamiento {
