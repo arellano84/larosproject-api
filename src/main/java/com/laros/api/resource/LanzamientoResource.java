@@ -1,17 +1,16 @@
 package com.laros.api.resource;
 
-import java.io.InputStream;
-import java.sql.Date;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
@@ -35,10 +34,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.laros.api.dto.MovimientoEstadisticaCategoria;
 import com.laros.api.dto.MovimientoEstadisticaDia;
-import com.laros.api.dto.MovimientoEstadisticaPersona;
 import com.laros.api.event.RecursoCreadoEvent;
 import com.laros.api.exceptionhandler.LarosExceptionHandler.Error;
 import com.laros.api.model.Lanzamiento;
@@ -48,15 +47,12 @@ import com.laros.api.repository.projection.ResumenLanzamiento;
 import com.laros.api.service.LanzamientoService;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
 
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-
 @RestController
 @RequestMapping(value = {"/lanzamientos", "/movimientos"}) // ("/lanzamientos")
 public class LanzamientoResource {
 
+	private static final Logger logger = LoggerFactory.getLogger(PersonaResource.class);
+	
 	@Autowired
 	private LanzamientoRepository lanzamientoRepository;
 
@@ -70,6 +66,23 @@ public class LanzamientoResource {
 	private MessageSource messageSource;
 	
 
+	// 22.28. Upload de arquivos para API
+	@PostMapping("/anexo")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('read')") 
+	public String uploadAnexo(@RequestParam("nomanexo") MultipartFile anexo) throws IOException {
+
+		logger.debug("[uploadAnexo] Inicio...");
+		
+		FileOutputStream out = new FileOutputStream("G:\\temp\\anexo-" + anexo.getOriginalFilename());
+		out.write(anexo.getBytes());
+		out.close();
+
+		logger.debug("[uploadAnexo] Fin.");
+		
+		return "ok";
+	}
+	
+	
 	/*
 	 * 22.14. Retornando os bytes do relatório na requisição
 	 * */

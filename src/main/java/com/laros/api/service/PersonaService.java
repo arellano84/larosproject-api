@@ -38,10 +38,14 @@ public class PersonaService {
 		logger.debug("[actualizar] Inicio...");
 		Persona personaSalvada = buscarPersonaGuardada(codigo);
 		
-		// 22.25. Inserindo uma pessoa com contato
-		persona.getContactos().forEach(c->c.setPersona(persona)); // TODO: validar cuando no envia Contacto...
+		//22.26. Usando a propriedade orphanRemoval
+		personaSalvada.getContactos().clear();
+		personaSalvada.getContactos().addAll(persona.getContactos());
 		
-		BeanUtils.copyProperties(persona, personaSalvada, "codigo");
+		// 22.25. Inserindo uma pessoa com contato
+		personaSalvada.getContactos().forEach(c->c.setPersona(personaSalvada)); // TODO: validar cuando no envia Contactos en el  Json...
+		
+		BeanUtils.copyProperties(persona, personaSalvada, "codigo", "contactos"); //Ignoramos código y contactos en la copia.
 		personaRepository.save(personaSalvada);
 		
 		logger.debug("[actualizar] Inicio...");

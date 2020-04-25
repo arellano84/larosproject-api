@@ -51,7 +51,10 @@ public class Persona {
 	// 22.24. Resolvendo o StackOverflowError com @JsonIgnoreProperties
 	@JsonIgnoreProperties("persona")
 	@Valid
-	@OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, 
+				orphanRemoval=true) // 22.26. Usando a propriedade orphanRemoval
+	
+	
 	private List<Contacto> contactos;
 	
 	public Long getCodigo() {
