@@ -12,8 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.laros.api.dto.MovimientoEstadisticaPersona;
 import com.laros.api.mail.Mailer;
@@ -24,6 +24,8 @@ import com.laros.api.repository.LanzamientoRepository;
 import com.laros.api.repository.PersonaRepository;
 import com.laros.api.repository.UsuarioRepository;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
+import com.laros.api.storage.S3;
+import com.laros.api.util.Constantes;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -49,6 +51,10 @@ public class LanzamientoService {
 	
 	@Autowired
 	private Mailer mailer;
+	
+	// 22.34. Anexando arquivo no lançamento
+	@Autowired
+	private S3 s3;
 	
 	/*
 	 * 22.15. Criando um agendamento de tarefa (Scheduler)
@@ -121,6 +127,12 @@ public class LanzamientoService {
 	public Lanzamiento guardar(Lanzamiento lanzamiento) throws PersonaInexistenteOInactivaException {
 		validarPersona(lanzamiento);
 		
+		// 22.34. Anexando arquivo no lançamento
+		if(StringUtils.hasText(lanzamiento.getAnexo())) {
+			// Si  hay anexo lo enviará a S3
+			s3.salvar(lanzamiento.getAnexo());
+		}
+		
 		return lanzamientoRepository.save(lanzamiento);
 	}
 	
@@ -153,5 +165,5 @@ public class LanzamientoService {
 			throw new IllegalArgumentException();
 		return lanzamientoGuardado;
 	}
-
+	
 }

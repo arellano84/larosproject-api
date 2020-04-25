@@ -48,6 +48,7 @@ import com.laros.api.repository.projection.ResumenLanzamiento;
 import com.laros.api.service.LanzamientoService;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
 import com.laros.api.storage.S3;
+import com.laros.api.util.Constantes;
 
 @RestController
 @RequestMapping(value = {"/lanzamientos", "/movimientos"}) // ("/lanzamientos")
@@ -82,7 +83,7 @@ public class LanzamientoResource {
 		out.write(anexo.getBytes());
 		out.close();*/
 		
-		String nombre = s3.salvarTemporariamente(anexo);
+		String nombre = s3.salvarTemporariamente(anexo, Constantes.DIR_ANEXO_TIPO_LANZAMIENTO);
 
 		logger.debug("[uploadAnexo] Fin.");
 		

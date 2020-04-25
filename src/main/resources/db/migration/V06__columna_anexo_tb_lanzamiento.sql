@@ -1,0 +1,1 @@
+ALTER TABLE lanzamiento ADD COLUMN anexo VARCHAR(250);
