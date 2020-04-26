@@ -133,7 +133,7 @@ public class LanzamientoResource {
 	}
 	
 	@GetMapping
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')") //TODO: Revisar rol, es lanzamiento.
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')") //TODO: Revisar rol, es lanzamiento.
 	public Page<Lanzamiento> buscar(LanzamientoFilter lanzamientoFilter, Pageable pageable) {
 		
 //		List<Lanzamiento> lanzamientos = lanzamientoRepository.findAll();
@@ -146,14 +146,14 @@ public class LanzamientoResource {
 	
 	
 	@GetMapping(params="resumo")
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public Page<ResumenLanzamiento> resumir(LanzamientoFilter lanzamientoFilter, Pageable pageable) {
 		return lanzamientoRepository.resumir(lanzamientoFilter, pageable);
 	}
 	
 	
 	@PostMapping
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('write')")
 	public ResponseEntity<Lanzamiento> crear(@Valid @RequestBody Lanzamiento lanzamiento, HttpServletResponse response) throws PersonaInexistenteOInactivaException {
 		
 		//Validar que no sea modificación.
@@ -165,7 +165,7 @@ public class LanzamientoResource {
 	}
 	
 	@GetMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> buscarPorCodigo(@PathVariable Long codigo) {
 		Lanzamiento lanzamiento = lanzamientoRepository.findOne(codigo);
 		return lanzamiento!=null 
@@ -175,14 +175,16 @@ public class LanzamientoResource {
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('write')")
 	public void eliminar(@PathVariable Long codigo) {
 		lanzamientoRepository.delete(codigo);
 	}
 
 	@PutMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('write')")
 	public ResponseEntity<Lanzamiento> actualizar(@PathVariable Long codigo, @Valid @RequestBody(required=true) Lanzamiento lanzamiento) throws PersonaInexistenteOInactivaException {
+		
+		logger.debug("[actualizar] Inicio...");
 		try {
 			return ResponseEntity.ok(lanzamientoService.actualizar(codigo, lanzamiento));
 		} catch (IllegalArgumentException e){

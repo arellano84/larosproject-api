@@ -146,7 +146,6 @@ public class LanzamientoService {
 		}
 		
 		// 22.35. Atualizando e removendo anexo
-		// TODO: REvisar no, esta funcionando correctamente modificación de anexo y eliminación.
 		if (StringUtils.isEmpty(lanzamiento.getAnexo())
 				&& StringUtils.hasText(lanzamientoGuardado.getAnexo())) {
 			s3.remover(lanzamientoGuardado.getAnexo());

@@ -46,14 +46,14 @@ public class PersonaResource {
 	private PersonaService personaService;
 	
 	@GetMapping
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
 	public Page<Persona> buscar(PersonaFilter personaFilter, Pageable pageable) {
 		
 		return personaRepository.filtrarPaginando(personaFilter, pageable);
 	}
 	
 	@GetMapping("/personas/listar") //20200403
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> listar(PersonaFilter personaFilter) {
 		
 //		List<Persona> personas = personaRepository.findAll();
@@ -66,7 +66,7 @@ public class PersonaResource {
 	}
 	
 	@PostMapping
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Persona> crear(@Valid @RequestBody Persona persona, HttpServletResponse response) {
 		
 		logger.debug("[crear] Inicio...");
@@ -80,7 +80,7 @@ public class PersonaResource {
 	}
 	
 	@GetMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> buscarPorCodigo(@PathVariable Long codigo) {
 		Persona persona = personaRepository.findOne(codigo);
 		return persona!=null 
@@ -90,13 +90,13 @@ public class PersonaResource {
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public void eliminar(@PathVariable Long codigo) {
 		personaRepository.delete(codigo);
 	}
 
 	@PutMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Persona> actualizar(@PathVariable Long codigo, @Valid @RequestBody(required=true) Persona persona) {
 		
 		return ResponseEntity.ok(personaService.actualizar(codigo, persona));
@@ -104,7 +104,7 @@ public class PersonaResource {
 	
 	@PutMapping("/{codigo}/activo")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public void actualizar(@PathVariable Long codigo, @RequestBody Boolean activo) {
 		personaService.actualizarPropiedadActivo(codigo, activo);
 	}
