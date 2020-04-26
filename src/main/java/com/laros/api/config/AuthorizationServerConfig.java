@@ -35,7 +35,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
 			.withClient("angular")
-			.secret("@ngul@r0")
+			.secret("@ngul@r0") //TODO: Poner esto en propiedades.
 			.scopes("read","write")
 			.authorizedGrantTypes("password", "refresh_token")
 			.accessTokenValiditySeconds(larosProjectApiProperty.getSeguridad().getAccessTokenValiditySeconds()) // 30 mins 1800 // The accessToken is valid for X time:
