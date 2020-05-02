@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/*
+ * 24.1. Criando entidades cidade e estado
+ * */
 @Entity
 @Table(name = "estado")
 public class Estado {

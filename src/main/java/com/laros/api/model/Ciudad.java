@@ -6,6 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/*
+ * 24.1. Criando entidades cidade e estado
+ * */
 @Entity
 @Table(name = "ciudad")
 public class Ciudad {
