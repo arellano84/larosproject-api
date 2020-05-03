@@ -36,6 +36,13 @@ public class LarosProjectApiProperty {
 		private boolean enableHttps;
 		private Integer accessTokenValiditySeconds;
 		private Integer refreshTokenValiditySeconds;
+		
+		//25.00.00 Mejoras: externalización de datos de Authorization.
+		private String withClientOne;
+		private String secretClientOne;
+		private String withClientTwo;
+		private String secretClientTwo;
+		
 
 		public boolean isEnableHttps() {
 			return enableHttps;
@@ -57,6 +64,32 @@ public class LarosProjectApiProperty {
 		public void setRefreshTokenValiditySeconds(Integer refreshTokenValiditySeconds) {
 			this.refreshTokenValiditySeconds = refreshTokenValiditySeconds;
 		}
+		
+		public String getWithClientOne() {
+			return withClientOne;
+		}
+		public void setWithClientOne(String withClientOne) {
+			this.withClientOne = withClientOne;
+		}
+		public String getSecretClientOne() {
+			return secretClientOne;
+		}
+		public void setSecretClientOne(String secretClientOne) {
+			this.secretClientOne = secretClientOne;
+		}
+		public String getWithClientTwo() {
+			return withClientTwo;
+		}
+		public void setWithClientTwo(String withClientTwo) {
+			this.withClientTwo = withClientTwo;
+		}
+		public String getSecretClientTwo() {
+			return secretClientTwo;
+		}
+		public void setSecretClientTwo(String secretClientTwo) {
+			this.secretClientTwo = secretClientTwo;
+		}
+		
 	}
 	
 	

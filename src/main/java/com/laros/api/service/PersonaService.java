@@ -1,5 +1,7 @@
 package com.laros.api.service;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -59,9 +61,10 @@ public class PersonaService {
 	}
 	
 	public Persona buscarPersonaGuardada(Long codigo) {
-		Persona personaSalvada = personaRepository.findOne(codigo);
-		if(personaSalvada==null)
+		// 25.2. Novas assinaturas do Spring Data JPA
+		Optional<Persona> personaSalvada = personaRepository.findById(codigo);
+		if(!personaSalvada.isPresent())
 			throw new EmptyResultDataAccessException(1);
-		return personaSalvada;
+		return personaSalvada.get();
 	}
 }

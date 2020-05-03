@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -166,7 +167,7 @@ public class LanzamientoService {
 	private void validarPersona(Lanzamiento lanzamiento) throws PersonaInexistenteOInactivaException {
 		Persona persona = null;
 		if(lanzamiento.getPersona().getCodigo() != null) {
-			persona = personaRepository.findOne(lanzamiento.getPersona().getCodigo());
+			persona = personaRepository.getOne(lanzamiento.getPersona().getCodigo());
 		}
 		
 		if (persona == null || persona.isInactivo()) {
@@ -175,10 +176,11 @@ public class LanzamientoService {
 	}
 
 	private Lanzamiento buscarLanzamientoExistente(Long codigo) {
-		Lanzamiento lanzamientoGuardado = lanzamientoRepository.findOne(codigo);
-		if(lanzamientoGuardado==null)
+		// 25.2. Novas assinaturas do Spring Data JPA
+		Optional<Lanzamiento> lanzamientoGuardado = lanzamientoRepository.findById(codigo);
+		if(!lanzamientoGuardado.isPresent())
 			throw new IllegalArgumentException();
-		return lanzamientoGuardado;
+		return lanzamientoGuardado.get();
 	}
 	
 }

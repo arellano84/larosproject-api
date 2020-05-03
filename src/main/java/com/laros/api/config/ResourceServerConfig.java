@@ -6,25 +6,24 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
 @Profile("oauth-security")
 @Configuration
+/* 25.3. Modificações para o Spring Security 5
 @EnableWebSecurity
 @EnableResourceServer
-@EnableGlobalMethodSecurity(prePostEnabled=true)//Habilita Seguridad Metodos
+@EnableGlobalMethodSecurity(prePostEnabled=true)//Habilita Seguridad Metodos*/
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 
+	/* 25.3. Modificações para o Spring Security 5
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
@@ -34,7 +33,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 //		.withUser("admin").password("admin").roles("ROLE");
 		
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-	}
+	}*/
 	
 	
 	@Override
@@ -55,10 +54,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	/*
 	 * Necesario para poder leer el password encriptado.
 	 * */
+	/* 25.3. Modificações para o Spring Security 5
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
+	}*/
 	
 	/*
 	 * Consigue Seguridad con OAuth2

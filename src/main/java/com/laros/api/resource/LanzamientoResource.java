@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -167,8 +168,9 @@ public class LanzamientoResource {
 	@GetMapping("/{codigo}")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> buscarPorCodigo(@PathVariable Long codigo) {
-		Lanzamiento lanzamiento = lanzamientoRepository.findOne(codigo);
-		return lanzamiento!=null 
+		// 25.2. Novas assinaturas do Spring Data JPA
+		Optional<Lanzamiento> lanzamiento = lanzamientoRepository.findById(codigo);
+		return lanzamiento.isPresent() 
 				? ResponseEntity.ok(lanzamiento) 
 				: ResponseEntity.notFound().build();
 	}
@@ -177,7 +179,7 @@ public class LanzamientoResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('write')")
 	public void eliminar(@PathVariable Long codigo) {
-		lanzamientoRepository.delete(codigo);
+		lanzamientoRepository.deleteById(codigo);
 	}
 
 	@PutMapping("/{codigo}")

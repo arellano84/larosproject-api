@@ -1,6 +1,7 @@
 package com.laros.api.resource;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -82,8 +83,9 @@ public class PersonaResource {
 	@GetMapping("/{codigo}")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> buscarPorCodigo(@PathVariable Long codigo) {
-		Persona persona = personaRepository.findOne(codigo);
-		return persona!=null 
+		// 25.2. Novas assinaturas do Spring Data JPA
+		Optional<Persona> persona = personaRepository.findById(codigo);
+		return persona.isPresent() 
 				? ResponseEntity.ok(persona) 
 				: ResponseEntity.notFound().build();
 	}
@@ -92,7 +94,7 @@ public class PersonaResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public void eliminar(@PathVariable Long codigo) {
-		personaRepository.delete(codigo);
+		personaRepository.deleteById(codigo);
 	}
 
 	@PutMapping("/{codigo}")

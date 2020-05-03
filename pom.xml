@@ -5,7 +5,7 @@
 
 	<groupId>com.laros.api</groupId>
 	<artifactId>larosproject-api</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>larosproject-api</name>
@@ -15,7 +15,8 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 <!-- 		<version>1.5.17.RELEASE</version> -->
-			<version>1.5.10.RELEASE</version>
+<!-- 			<version>1.5.10.RELEASE</version> -->
+			<version>2.0.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -23,6 +24,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		
+		<spring-security-oauth2.verion>2.2.1.RELEASE</spring-security-oauth2.verion>
+		<spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
 		
 		<jasperreports.version>6.10.0</jasperreports.version>
         <jasperreports-functions.version>6.10.0</jasperreports-functions.version>
@@ -83,10 +87,12 @@
 		<dependency>
 		    <groupId>org.springframework.security.oauth</groupId>
 		    <artifactId>spring-security-oauth2</artifactId>
+		    <version>${spring-security-oauth2.verion}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-jwt</artifactId>
+		    <version>${spring-security-jwt.version}</version>
 		</dependency>
 
 

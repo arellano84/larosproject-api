@@ -1,6 +1,7 @@
 package com.laros.api.resource;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -58,8 +59,9 @@ public class CategoriaResource {
 	@GetMapping("/{codigo}")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 	public ResponseEntity<?> buscarPorCodigo(@PathVariable Long codigo) {
-		Categoria categoria = categoriaRepository.findOne(codigo);
-		return categoria!=null 
+		// 25.2. Novas assinaturas do Spring Data JPA
+		Optional<Categoria> categoria = categoriaRepository.findById(codigo);
+		return categoria.isPresent() 
 				? ResponseEntity.ok(categoria) 
 				: ResponseEntity.notFound().build();
 	}
