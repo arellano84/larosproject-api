@@ -1,0 +1,1 @@
+git tag -a v1.1.1 -m "v1.1.1 Versión PRODUCCIÓN hasta <Apêndice: Combos dependentes> incluso."
