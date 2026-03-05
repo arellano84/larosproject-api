@@ -6,6 +6,6 @@ public class GeneradorSenha {
 	
 	public static void main(String[] args) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println(encoder.encode("simon")); //25.00.00 Mejoras: externalización de datos de Authorization.
+		System.out.println(encoder.encode("luis")); //25.00.00 Mejoras: externalización de datos de Authorization.
 	}
 }
