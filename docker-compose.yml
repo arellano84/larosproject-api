@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  mysql_lp:
+    image: mysql:5.7
+    container_name: mysql_lp
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: larosprojectapi
+      MYSQL_USER: laros
+      MYSQL_PASSWORD: laros
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-lp-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - local-network-lp
+
+  adminer_lp:
+    image: adminer:4.8.1
+    container_name: adminer_lp
+    depends_on:
+      - mysql_lp
+    ports:
+      - "8086:8080"
+    networks:
+      - local-network-lp
+
+volumes:
+  mysql-lp-data:
+
+networks:
+  local-network-lp:
+    driver: bridge
