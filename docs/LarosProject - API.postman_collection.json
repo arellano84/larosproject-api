@@ -1,0 +1,1969 @@
+{
+  "info": {
+    "_postman_id": "0cd2cfc9-b50b-4512-b469-6491ecb01e27",
+    "name": "LarosProject - API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5844866"
+  },
+  "item": [
+    {
+      "name": "Categorias",
+      "item": [
+        {
+          "name": "Listar Categorias BasicToken",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin@algamoney.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/categorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Categorias BasicToken (@laros)",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "luis",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "luis@laros.com",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/categorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Nueva Categoria",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNzczMTQwNDc3LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI4ZTk4ZTQxZC1lOTA1LTRlZDgtYTA1MS1iMGE5NDBkN2E1N2IiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Js67Qk3ParDt-pH8vwEbIQ4kGMZRj47u3o1wQdtmYSU",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"nombre\": \"Deportes\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias?Authorization=bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6Ikx1aXMgQXJvcyIsInVzZXJfbmFtZSI6Imx1aXNAbGFyb3MuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTc3MzEzOTM3NiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QRVNRVUlTQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSIsIlJPTEVfUEVTUVVJU0FSX1BFU1NPQSJdLCJqdGkiOiJmMzdiYzM1My0xNDJlLTRiYjQtOWQ0Mi1kYzgxZDk0OTdjYjciLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.RzOU0JgWuPXO5kSGK7dvmzshRfrcixOKmfYTxlycOiQ",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ],
+              "query": [
+                {
+                  "key": "Authorization",
+                  "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6Ikx1aXMgQXJvcyIsInVzZXJfbmFtZSI6Imx1aXNAbGFyb3MuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTc3MzEzOTM3NiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QRVNRVUlTQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSIsIlJPTEVfUEVTUVVJU0FSX1BFU1NPQSJdLCJqdGkiOiJmMzdiYzM1My0xNDJlLTRiYjQtOWQ0Mi1kYzgxZDk0OTdjYjciLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.RzOU0JgWuPXO5kSGK7dvmzshRfrcixOKmfYTxlycOiQ"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Categorias Oauth2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNzczMTQwNDc3LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI4ZTk4ZTQxZC1lOTA1LTRlZDgtYTA1MS1iMGE5NDBkN2E1N2IiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Js67Qk3ParDt-pH8vwEbIQ4kGMZRj47u3o1wQdtmYSU",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/categorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Personas",
+      "item": [
+        {
+          "name": "Listar Personas BasicToken",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "maria",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "maria@algamoney.com",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/personas?nombre=Luis",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas"
+              ],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "Luis"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Personas BasicToken (@laros)",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "luis",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "luis@laros.com",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/personas?nombre=Luis",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas"
+              ],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "Luis"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Personas Oauth",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6Ikx1aXMgQXJvcyIsInVzZXJfbmFtZSI6Imx1aXNAbGFyb3MuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTc3MzE0NTcyNiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QRVNRVUlTQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSIsIlJPTEVfUEVTUVVJU0FSX1BFU1NPQSJdLCJqdGkiOiIzZTYxZjAxOS1mOTBhLTQyN2MtODMyOC02YzJhZWJhNTgwNzYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.CznLCpIudydwwoPv8l5nucObTZecaCXCw6xqYars-hk",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/personas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Personas Heroku",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU2Njg4MTksInVzZXJfbmFtZSI6Im1hcmlhQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIl0sImp0aSI6ImIxZjBmN2U3LWVhZWEtNGEwMC04MzQ0LWI3NTNiNWJmODc5NiIsImNsaWVudF9pZCI6ImFuZ3VsYXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.fdwwMRpqgMg8oNjxU0ZXQFdP3VBhUxkSUtr4nLpdtnU"
+              }
+            ],
+            "url": {
+              "raw": "https://larosproject-api.herokuapp.com/personas",
+              "protocol": "https",
+              "host": [
+                "larosproject-api",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "personas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Persona",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTg3NDA4NTczLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI4NTAzZjM3MS1kMzlhLTQzNmUtYTQzOS1hNGUzZTE5MWNhNDQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0._u7oT6nuWmWOFD0PjvGvJaIwnwFj8Tx2XKbEVEhKoOw",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/personas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Nueva  Persona con Contacto",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTg3NDEzMzA4LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI2MGZkMTBiYS00OGEwLTRhNWEtOGQ5NS05YmZlOWJiYmUzNjIiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.y1bQWz48-LiHBoZ8PHshCdjIPWUi__wgpjixWg1ikfk"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"documento\": \"00000000D\",\r\n    \"nombre\": \"Dave\",\r\n    \"apellido1\": \"Aros\",\r\n    \"apellido2\": \"\",\r\n    \"activo\": true,\r\n    \"direccion\": {\r\n        \"tipo\": \"Calle\",\r\n        \"calle\": \"Embajadores\",\r\n        \"pais\": \"México\"\r\n    },\r\n    \"contactos\": [\r\n        {\r\n            \"nombre\": \"Dave AR2\",\r\n            \"email\": \"dave@laros.com\",\r\n            \"telefono\": \"00 0000-0000\"\r\n        }\r\n    ]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/personas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Nueva Persona",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU2Njg4MTksInVzZXJfbmFtZSI6Im1hcmlhQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIl0sImp0aSI6ImIxZjBmN2U3LWVhZWEtNGEwMC04MzQ0LWI3NTNiNWJmODc5NiIsImNsaWVudF9pZCI6ImFuZ3VsYXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.fdwwMRpqgMg8oNjxU0ZXQFdP3VBhUxkSUtr4nLpdtnU",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"documento\": \"00000014T\",\n    \"nombre\": \"Silvia\",\n    \"apellido1\": \"Rosales\",\n    \"apellido2\": \"\",\n    \"activo\": true,\n    \"direccion\": {\n\t\t\"calle\": \"Pino Suarez\"\n\t}\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/personas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Persona",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjM5OTAsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJjNGExNGJkNi00MWNmLTQ3ZWEtYTI2Zi0yODg4ZmZjYjBiYjkiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.KmOkpzychPfyeYOoE-_ck2irDrPigE7cyBL8f-DDZHE",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/personas/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modificar Persona",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjQwNzgsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI1Y2I2ZTM4Mi0xMTc4LTQ4YTktYjcxYy1hOTdkNzk1ZjU4MDgiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.jbid32PzV-MH0bMOkUaEwOIh5inDUKG6bNhCXIZKdQc",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"documento\": \"X9726872T\",\n    \"nombre\": \"L Jesus\",\n    \"apellido1\": \"Rosales\",\n    \"apellido2\": \"\",\n    \"activo\": true,\n    \"direccion\": {\n        \"tipo\": \"Calle\",\n        \"calle\": \"Embajadores\"\n    }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/personas/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modificar Persona Con Contacto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTg3NTM5NDkxLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI5N2U5MzhlZi0yOTAwLTRmOTUtOWVmOC0xNDFmMDFjNTkwOTAiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.vJcZ9BgWITrdPbaV0c6VZs1NkpkldujaYgcG8y62J80"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"codigo\": 1,\n    \"documento\": \"X9726872T\",\n    \"nombre\": \"L Jesus\",\n    \"apellido1\": \"Rosales\",\n    \"apellido2\": \"\",\n    \"activo\": true,\n    \"direccion\": {\n        \"tipo\": \"Calle\",\n        \"calle\": \"Embajadores\"\n    },\n    \"contactos\": [\n        {\n        \t\"codigo\": 1,\n            \"nombre\": \"Luis AR2\",\n            \"email\": \"luisini@laros.com\",\n            \"telefono\": \"00 0000-0000\"\n        }\n    ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/personas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modificar Estado",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjUzNTUsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIwOTdmMDZjNy1mYTc4LTQ1YTktYTM0Ny0yZDIxYzgzYzg4NjQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.vbVTRGgwDnQ-Oj2FBFbUpx4r-4vuSazjdOS4zHHMOTg",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "false"
+            },
+            "url": {
+              "raw": "http://localhost:8080/personas/1/activo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                "1",
+                "activo"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Lanzamientos",
+      "item": [
+        {
+          "name": "Listar Lanzamientos con Filtros y Projection",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU2NTAyNzQsInVzZXJfbmFtZSI6Im1hcmlhQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIl0sImp0aSI6IjY1NzNkZjhjLTZlZWMtNDk5MC1hMWU5LWQzODNhOGVmY2VmMCIsImNsaWVudF9pZCI6ImFuZ3VsYXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.JiTGK8TrtCU8acU5XkjE_YMPKB8gpTkLcrCfMnGuNPQ",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos?descripcion=p&fechaVencimientoDe=2016-12-10&fechaVencimientoHasta=2018-12-31&resumo=",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos"
+              ],
+              "query": [
+                {
+                  "key": "descripcion",
+                  "value": "p"
+                },
+                {
+                  "key": "fechaVencimientoDe",
+                  "value": "2016-12-10"
+                },
+                {
+                  "key": "fechaVencimientoHasta",
+                  "value": "2018-12-31"
+                },
+                {
+                  "key": "resumo",
+                  "value": "",
+                  "description": "Para activar la projection",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Lanzamientos con Paginación",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjQzMjgsInVzZXJfbmFtZSI6Im1hcmlhQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIl0sImp0aSI6IjQ5YWEzOWJlLTRjYjctNDFkZS1iYWJjLWExNWYzMDY4MTE2OSIsImNsaWVudF9pZCI6ImFuZ3VsYXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.GZQxTTQPjdFs_509yzQ0QL7zo5E72dJ2D7fSgwEvJ_c",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos?size=4&page=3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "4"
+                },
+                {
+                  "key": "page",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Nuevo Lanzamiento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjU1MDgsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJmNGZhZWI2Ni04YTA1LTQ4MTQtODQyMy1iMzRmNDVhMzljNTciLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.iPE99g9mKiKlohhBmAC8tM1_ZisKhiD6BznzQxd22eg",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"descripcion\": \"Premio Semestralss\",\n\t\"fechaVencimiento\": \"2018-11-30\",\n\t\"fechaPago\": null,\n\t\"valor\": 20000,\n\t\"observacion\": \"Distribución de Beneficios\",\n\t\"tipo\": \"RECETA\",\n\t\"persona\": {\n        \"codigo\": 1\n    },\n    \"categoria\": {\n        \"codigo\": 3\n    }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Lanzamiento",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjQ2OTksInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIwYzk0MmQ0Yy1iYTY4LTQ2MzAtYmI5OS00MWRiOTBjZDgxZTMiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.VKtgpU2Q_xu8AnokGAhnkPgzZ3GCaSeIeCVIcXUh5YY",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modificar Lanzamiento",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "maria",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "maria@algamoney.com",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjQ3NjgsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJiMTkxNTZmNC05MDQ2LTQ4ZWMtODY4My1mNDI1YzY0ZmZiYmYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.q15KdzEiFW4rexy5dpvM2MFcrNtNE90F871S4Mz-O90",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"descripcion\": \"Ejemplosss 15\",\n\t\"fechaVencimiento\": \"2017-06-10\",\n\t\"fechaPago\": null,\n\t\"valor\": 10000,\n\t\"observacion\": \"Distribuição de lucros\",\n\t\"tipo\": \"GASTO\",\n\t\"persona\": {\n        \"codigo\": 1\n    },\n    \"categoria\": {\n        \"codigo\": 2\n    }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos/15",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Lanzamiento",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjQ4MzYsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJiMGI3NDYwZC0wNGM4LTQ0MjMtODZhNi0yZDI0YjIzZmEzYzEiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.9qHtjONaYT8I5YFQGsEiR7uQ3wPWukHO4ERWf71VN6A",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos/36",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos",
+                "36"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Security Basic",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos?descripcion=premio&fechaVencimientoDe=2018-10-10&fechaVencimientoHasta=2018-12-31",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos"
+              ],
+              "query": [
+                {
+                  "key": "descripcion",
+                  "value": "premio"
+                },
+                {
+                  "key": "fechaVencimientoDe",
+                  "value": "2018-10-10"
+                },
+                {
+                  "key": "fechaVencimientoHasta",
+                  "value": "2018-12-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Security Basic (@laros)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin@laros.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos?descripcion=premio&fechaVencimientoDe=2018-10-10&fechaVencimientoHasta=2018-12-31",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos"
+              ],
+              "query": [
+                {
+                  "key": "descripcion",
+                  "value": "premio"
+                },
+                {
+                  "key": "fechaVencimientoDe",
+                  "value": "2018-10-10"
+                },
+                {
+                  "key": "fechaVencimientoHasta",
+                  "value": "2018-12-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Security Oauth2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer c9b1e420-6c15-44ef-a4b6-ac4f9ca0320e",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos?descripcion=premio&fechaVencimientoDe=2018-10-10&fechaVencimientoHasta=2018-12-31",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos"
+              ],
+              "query": [
+                {
+                  "key": "descripcion",
+                  "value": "premio"
+                },
+                {
+                  "key": "fechaVencimientoDe",
+                  "value": "2018-10-10"
+                },
+                {
+                  "key": "fechaVencimientoHasta",
+                  "value": "2018-12-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Security JWT",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDQ5ODkyNDgsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJjZWVhOTg1My03YmJjLTQ0NTgtOTYwNy0yY2EyNmY3N2E3ZDUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.F_8IQLv5q2kNFwPmLz8mOliHvEYxhyi3klFvoCDPlkY",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos?descripcion=Salário&fechaVencimientoDe=2015-10-10&fechaVencimientoHasta=2018-12-31",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos"
+              ],
+              "query": [
+                {
+                  "key": "descripcion",
+                  "value": "Salário"
+                },
+                {
+                  "key": "fechaVencimientoDe",
+                  "value": "2015-10-10"
+                },
+                {
+                  "key": "fechaVencimientoHasta",
+                  "value": "2018-12-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "General (oauth2)",
+      "item": [
+        {
+          "name": "Obtener Token",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "@ngul@r0",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "angular",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client",
+                  "value": "angular",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "luis@algamoney.com",
+                  "description": "admin@algamoney.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "maria",
+                  "description": "admin",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/oauth/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "oauth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Token (luis@laros.com)",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "@ngul@r0",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "angular",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client",
+                  "value": "angular",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "luis@laros.com",
+                  "description": "admin@laros.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "luis",
+                  "description": "admin",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/oauth/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "oauth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Token (admin@laros.com)",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "@ngul@r0",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "angular",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client",
+                  "type": "text",
+                  "value": "angular"
+                },
+                {
+                  "key": "username",
+                  "type": "text",
+                  "value": "admin@laros.com"
+                },
+                {
+                  "key": "password",
+                  "type": "text",
+                  "value": "admin"
+                },
+                {
+                  "key": "grant_type",
+                  "type": "text",
+                  "value": "password"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/oauth/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "oauth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Token Refresh",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "@ngul@r0",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "angular",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "type": "text",
+                  "value": "refresh_token"
+                },
+                {
+                  "key": "refresh_token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNzczMTQwNDU1LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI1NWM5NjA2Yy1lZmEyLTQ5NGUtODY4ZS01MTk1NDI2MTJjZjkiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.RlarBoF8gHYAf2G9rToI5nbUXYd6JPjnAMa2EL7qKaM",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/oauth/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "oauth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Token (Mobile Client)",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "m0b1l30",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "mobile",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client",
+                  "type": "text",
+                  "value": "angular"
+                },
+                {
+                  "description": "admin@algamoney.com",
+                  "key": "username",
+                  "type": "text",
+                  "value": "maria@algamoney.com"
+                },
+                {
+                  "description": "admin",
+                  "key": "password",
+                  "type": "text",
+                  "value": "maria"
+                },
+                {
+                  "key": "grant_type",
+                  "type": "text",
+                  "value": "password"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/oauth/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "oauth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Token Heroku",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "@ngul@r0",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "angular",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client",
+                  "type": "text",
+                  "value": "angular"
+                },
+                {
+                  "description": "maria@algamoney.com",
+                  "key": "username",
+                  "type": "text",
+                  "value": "admin@algamoney.com"
+                },
+                {
+                  "description": "maria",
+                  "key": "password",
+                  "type": "text",
+                  "value": "admin"
+                },
+                {
+                  "key": "grant_type",
+                  "type": "text",
+                  "value": "password"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://larosproject-api.herokuapp.com/oauth/token",
+              "protocol": "https",
+              "host": [
+                "larosproject-api",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "oauth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Token",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1ODc0NDQsInVzZXJfbmFtZSI6Im1hcmlhQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIl0sImp0aSI6ImZiNmMyYzhlLWRhYzgtNDJmNC1iYTU1LTE2NzQwOGY2NmM4ZiIsImNsaWVudF9pZCI6ImFuZ3VsYXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.qgY7PSLSBa_AKcZVn6SgfTt1BfM-IMiIwMYQPBtk37Y",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            },
+            "url": {
+              "raw": "http://localhost:8080/tokens/revoke",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "tokens",
+                "revoke"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Token Admin 20200410",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "@ngul@r0",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "angular",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client",
+                  "type": "text",
+                  "value": "angular"
+                },
+                {
+                  "key": "username",
+                  "type": "text",
+                  "value": "admin@laros.com"
+                },
+                {
+                  "key": "password",
+                  "type": "text",
+                  "value": "admin"
+                },
+                {
+                  "key": "grant_type",
+                  "type": "text",
+                  "value": "password"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/oauth/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "oauth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Usuarios y Permisos",
+      "item": [
+        {
+          "name": "http://localhost:8080/Usuarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/Usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "Usuarios"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Revisando Back para Front 20200402",
+      "item": [
+        {
+          "name": "Movimiento Obtener con Basic",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/movimientos/?resumo&fechaVencimientoDe=2020-04-01&fechaVencimientoHasta=2020-04-30&page=0&size=3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "movimientos",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "resumo",
+                  "value": null
+                },
+                {
+                  "key": "fechaVencimientoDe",
+                  "value": "2020-04-01"
+                },
+                {
+                  "key": "fechaVencimientoHasta",
+                  "value": "2020-04-30"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Movimiento Obtener 1 con Basic",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/movimientos/1/?resumo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "movimientos",
+                "1",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "resumo",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Movimiento Eliminar con Basic",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/movimientos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "movimientos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Movimiento Nuevo con Basic",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "maria",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "maria@algamoney.com",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDU1NjU1MDgsInVzZXJfbmFtZSI6ImFkbWluQGFsZ2Ftb25leS5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJmNGZhZWI2Ni04YTA1LTQ4MTQtODQyMy1iMzRmNDVhMzljNTciLCJjbGllbnRfaWQiOiJhbmd1bGFyIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.iPE99g9mKiKlohhBmAC8tM1_ZisKhiD6BznzQxd22eg"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"descripcion\": \"Monitor\",\n\t\"fechaVencimiento\": \"2020-04-06\",\n\t\"fechaPago\": null,\n\t\"valor\": 20000,\n\t\"observacion\": \"Distribución de Beneficios\",\n\t\"tipo\": \"RECETA\",\n\t\"persona\": {\n        \"codigo\": 2\n    },\n    \"categoria\": {\n        \"codigo\": 3\n    }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/movimientos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "movimientos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Categorias Obtener con Basic",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "luis@algamoney.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "maria",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/categorias/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Personas Obtener con Basic",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "luis@algamoney.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "maria",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/personas/?resumo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "resumo",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Personas Obtener con Token",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/personas/?resumo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "resumo",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Personas Obtener con Basic Activar",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "luis@algamoney.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "maria",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "true"
+            },
+            "url": {
+              "raw": "http://localhost:8080/personas/2/activo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                "2",
+                "activo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Personas Obtener sin Paginacion con Basic",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "luis@algamoney.com",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "maria",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/personas/listar/?resumo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "personas",
+                "listar",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "resumo",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Estadisticas",
+      "item": [
+        {
+          "name": "Obtener Estadistica Movimiento por Categorias",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTg3MjIzNzYwLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJkMDA4YTI0Yi0xZGI0LTQ5ZmMtYTkyMy1jNGY5NTBmZmYzMmUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.zcJ90_vEaL67ldvNGzTeg7d4L3TVIg0ivbTmpLfXi5s"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos/estadisticas/por-categoria",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos",
+                "estadisticas",
+                "por-categoria"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Estadistica Movimiento por Dia",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTg3MjI0MzcwLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJiZTg3YTQyYy03NDQyLTQzNWEtYjNlMy0xZjAyMzU1ZjQ0YzQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Jw0xj8jMVkw3G5y9bqry5bMR_Oo8-T_5jYjrdAJX5ak"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos/estadisticas/por-dia",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos",
+                "estadisticas",
+                "por-dia"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Informe Movimiento por Persona",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "connection": true,
+              "accept-encoding": true,
+              "accept": true,
+              "user-agent": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJ1c2VyX25hbWUiOiJhZG1pbkBsYXJvcy5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTg3MjkyNjE3LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI0ODQ1MTVmOS02OGQxLTRmNzQtOGM2Yi1iZmFiNjIyNGViMDMiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.BjTd8NwJKvGlxRGJcTgJmLtfHMS1i_dZ7qYaVT3wCPY"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/lanzamientos/informes/por-persona?inicio=2020-04-01&fin=2020-04-30",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lanzamientos",
+                "informes",
+                "por-persona"
+              ],
+              "query": [
+                {
+                  "key": "inicio",
+                  "value": "2020-04-01"
+                },
+                {
+                  "key": "fin",
+                  "value": "2020-04-30"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
