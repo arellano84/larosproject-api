@@ -10,6 +10,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.laros.api.storage.StorageService;
+import com.laros.api.util.Constantes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +50,6 @@ import com.laros.api.repository.filter.LanzamientoFilter;
 import com.laros.api.repository.projection.ResumenLanzamiento;
 import com.laros.api.service.LanzamientoService;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
-import com.laros.api.storage.S3;
-import com.laros.api.util.Constantes;
 
 @RestController
 @RequestMapping(value = {"/lanzamientos", "/movimientos"}) // ("/lanzamientos")
@@ -70,8 +70,9 @@ public class LanzamientoResource {
 	private MessageSource messageSource;
 	
 	// 22.33. Enviando arquivos para o S3
+	//10/03/2026: S3 o Local Storage
 	@Autowired
-	private S3 s3;
+	private StorageService storageService;
 
 	// 22.28. Upload de arquivos para API
 	@PostMapping("/anexo")
@@ -84,11 +85,11 @@ public class LanzamientoResource {
 		out.write(anexo.getBytes());
 		out.close();*/
 		
-		String nombre = s3.salvarTemporariamente(anexo, Constantes.DIR_ANEXO_TIPO_LANZAMIENTO);
+		String nombre = storageService.salvarTemporariamente(anexo, Constantes.DIR_ANEXO_TIPO_LANZAMIENTO);
 
 		logger.debug("[uploadAnexo] Fin.");
 		
-		return new Anexo(nombre, s3.configurarUrl(nombre));
+		return new Anexo(nombre, storageService.configurarUrl(nombre));
 	}
 	
 	

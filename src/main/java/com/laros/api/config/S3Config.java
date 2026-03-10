@@ -16,11 +16,13 @@ import com.amazonaws.services.s3.model.Tag;
 import com.amazonaws.services.s3.model.lifecycle.LifecycleFilter;
 import com.amazonaws.services.s3.model.lifecycle.LifecycleTagPredicate;
 import com.laros.api.config.property.LarosProjectApiProperty;
+import org.springframework.context.annotation.Profile;
 
 /*
  * 22.30. Configurando o serviço S3
  * */
 @Configuration
+@Profile("prod")
 public class S3Config {
 	
 	@Autowired

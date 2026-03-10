@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
+import com.laros.api.storage.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -25,8 +26,6 @@ import com.laros.api.repository.LanzamientoRepository;
 import com.laros.api.repository.PersonaRepository;
 import com.laros.api.repository.UsuarioRepository;
 import com.laros.api.service.exception.PersonaInexistenteOInactivaException;
-import com.laros.api.storage.S3;
-import com.laros.api.util.Constantes;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -54,8 +53,9 @@ public class LanzamientoService {
 	private Mailer mailer;
 	
 	// 22.34. Anexando arquivo no lançamento
+	//10/03/2026: S3 o Local Storage
 	@Autowired
-	private S3 s3;
+	private StorageService storageService;
 	
 	/*
 	 * 22.15. Criando um agendamento de tarefa (Scheduler)
@@ -130,8 +130,8 @@ public class LanzamientoService {
 		
 		// 22.34. Anexando arquivo no lançamento
 		if(StringUtils.hasText(lanzamiento.getAnexo())) {
-			// Si  hay anexo lo enviará a S3
-			s3.salvar(lanzamiento.getAnexo());
+			// Si  hay anexo lo enviará a S3 o Local Storage
+			storageService.salvar(lanzamiento.getAnexo());
 		}
 		
 		return lanzamientoRepository.save(lanzamiento);
@@ -149,10 +149,10 @@ public class LanzamientoService {
 		// 22.35. Atualizando e removendo anexo
 		if (StringUtils.isEmpty(lanzamiento.getAnexo())
 				&& StringUtils.hasText(lanzamientoGuardado.getAnexo())) {
-			s3.remover(lanzamientoGuardado.getAnexo());
+			storageService.remover(lanzamientoGuardado.getAnexo());
 		} else if (StringUtils.hasLength(lanzamiento.getAnexo())
 				&& !lanzamiento.getAnexo().equals(lanzamientoGuardado.getAnexo())) {
-			s3.substituir(lanzamientoGuardado.getAnexo(), lanzamiento.getAnexo());
+			storageService.substituir(lanzamientoGuardado.getAnexo(), lanzamiento.getAnexo());
 		}
 		
 		
