@@ -10,6 +10,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.laros.api.config.property.LarosProjectApiProperty;
 import com.laros.api.storage.StorageService;
 import com.laros.api.util.Constantes;
 import org.slf4j.Logger;
@@ -74,6 +75,9 @@ public class LanzamientoResource {
 	@Autowired
 	private StorageService storageService;
 
+	@Autowired
+	private LarosProjectApiProperty propiedades;
+
 	// 22.28. Upload de arquivos para API
 	@PostMapping("/anexo")
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('read')") 
@@ -85,7 +89,7 @@ public class LanzamientoResource {
 		out.write(anexo.getBytes());
 		out.close();*/
 		
-		String nombre = storageService.salvarTemporariamente(anexo, Constantes.DIR_ANEXO_TIPO_LANZAMIENTO);
+		String nombre = storageService.salvarTemporariamente(anexo, propiedades.getStorage().getDirAnexoTipoLanzamiento());
 
 		logger.debug("[uploadAnexo] Fin.");
 		

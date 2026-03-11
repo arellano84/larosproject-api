@@ -29,7 +29,14 @@ public class LarosProjectApiProperty {
 		return seguridad;
 	}
 
-	
+	/*
+	 * Storage Properties
+	 * */
+	private final Storage storage = new Storage();
+
+	public Storage getStorage() {
+		return storage;
+	}
 	
 	public static class Seguridad {
 		
@@ -182,5 +189,31 @@ public class LarosProjectApiProperty {
 			this.secretAccessKey = secretAccessKey;
 		}
 	}
-	
+
+
+	/*
+	 * 11-03-2026 - Storage Properties
+	 * */
+	public static class Storage {
+
+		private String baseDir;
+
+		private String dirAnexoTipoLanzamiento;
+
+		public String getBaseDir() {
+			return baseDir;
+		}
+
+		public void setBaseDir(String baseDir) {
+			this.baseDir = baseDir;
+		}
+
+		public String getDirAnexoTipoLanzamiento() {
+			return dirAnexoTipoLanzamiento;
+		}
+
+		public void setDirAnexoTipoLanzamiento(String dirAnexoTipoLanzamiento) {
+			this.dirAnexoTipoLanzamiento = dirAnexoTipoLanzamiento;
+		}
+	}
 }
