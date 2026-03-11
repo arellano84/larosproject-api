@@ -25,3 +25,11 @@ Creado: 2020
 AlgaWorks - Fullstack Angular e Spring:
 https://app.algaworks.com/meus-cursos/angular-rest-spring-boot
 
+
+Git
+
+Repositorio
+https://github.com/arellano84/larosproject-api
+
+Crear Tag
+git tag -a v1.1.1 -m "v1.1.1 Versión PRODUCCIÓN hasta <Apêndice: Combos dependentes> incluso."
