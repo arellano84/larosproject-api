@@ -44,7 +44,7 @@
           "response": []
         },
         {
-          "name": "Listar Categorias BasicToken (@laros)",
+          "name": "Listar Categorias BasicToken (luis@laros.com)",
           "request": {
             "auth": {
               "type": "basic",
@@ -63,6 +63,41 @@
             },
             "method": "GET",
             "header": [],
+            "url": {
+              "raw": "http://localhost:8080/categorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "categorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Categorias Oauth2 (luis@laros.com)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "bearer ",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "http://localhost:8080/categorias",
               "protocol": "http",
@@ -112,41 +147,6 @@
                   "key": "Authorization",
                   "value": "bearer "
                 }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Listar Categorias Oauth2",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "bearer ",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "http://localhost:8080/categorias",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "categorias"
               ]
             }
           },
@@ -1388,90 +1388,6 @@
               "path": [
                 "tokens",
                 "revoke"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Obtener Token Admin 20200410",
-          "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "password",
-                  "value": "@ngul@r0",
-                  "type": "string"
-                },
-                {
-                  "key": "username",
-                  "value": "angular",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "client",
-                  "type": "text",
-                  "value": "angular"
-                },
-                {
-                  "key": "username",
-                  "type": "text",
-                  "value": "admin@laros.com"
-                },
-                {
-                  "key": "password",
-                  "type": "text",
-                  "value": "admin"
-                },
-                {
-                  "key": "grant_type",
-                  "type": "text",
-                  "value": "password"
-                }
-              ]
-            },
-            "url": {
-              "raw": "http://localhost:8080/oauth/token",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "oauth",
-                "token"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Usuarios y Permisos",
-      "item": [
-        {
-          "name": "http://localhost:8080/Usuarios",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/Usuarios",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "Usuarios"
               ]
             }
           },
